@@ -8,6 +8,8 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.4.1",
+    "daisyui": "^2.51.3",
     "nuxt": "^3.2.3"
   }
 }
