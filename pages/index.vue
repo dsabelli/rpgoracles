@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <h1>Welcome to RPG Oracles</h1>
+  <div class="min-h-screen">
+    <Hero />
+    <div class="h-1/4">Test</div>
   </div>
 </template>
 
