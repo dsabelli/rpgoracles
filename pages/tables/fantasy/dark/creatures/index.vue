@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <h1>fantasy index</h1>
-    <Table />
-  </div>
+  <div>Mork Borg Creatures</div>
 </template>
 
 <script setup lang="ts"></script>

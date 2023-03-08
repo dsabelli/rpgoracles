@@ -1,37 +1,47 @@
 <template>
-  <div class="navbar bg-base-100">
-    <div class="flex-1">
-      <a class="btn btn-ghost normal-case text-xl">daisyUI</a>
-    </div>
+  <div class="navbar bg-base-100 px-0">
     <div class="flex-none">
-      <ul class="menu menu-horizontal px-1">
-        <li><a>Item 1</a></li>
+      <NuxtLink to="/">RPG Oracles</NuxtLink>
+    </div>
+    <div class="z-10">
+      <ul
+        class="menu menu-horizontal bg-base-100 rounded-box p-2"
+        v-for="table in tables"
+      >
         <li tabindex="0">
-          <a>
-            Parent
-            <svg
-              class="fill-current"
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
-              />
-            </svg>
-          </a>
-          <ul class="p-2 bg-base-100">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
+          <span
+            ><NuxtLink :to="`/tables/${table.pathway}`">
+              {{ table.name }}</NuxtLink
+            ></span
+          >
+          <ul class="menu bg-base-100">
+            <li tabindex="0" v-for="subTable in table.subTables">
+              <span
+                ><NuxtLink
+                  :to="`/tables/${table.pathway}/${subTable.pathway}`"
+                  >{{ subTable.name }}</NuxtLink
+                ></span
+              >
+              <ul class="bg-base-100 z-20">
+                <li tabindex="0" v-for="subSubTable in subTable.subTables">
+                  <span
+                    ><NuxtLink
+                      :to="`/tables/${table.pathway}/${subTable.pathway}/${subSubTable.pathway}`"
+                      >{{ subSubTable.name }}</NuxtLink
+                    ></span
+                  >
+                </li>
+              </ul>
+            </li>
           </ul>
         </li>
-        <li><a>Item 3</a></li>
       </ul>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { tables } from "~~/pages/tables/tables";
+</script>
 
 <style scoped></style>
