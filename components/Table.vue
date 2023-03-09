@@ -1,6 +1,6 @@
 <template>
   <div class="overflow-x-auto">
-    <table class="table table-compact table-zebra w-full">
+    <table class="table table-compact table-zebra w-full z-0">
       <!-- head -->
       <thead>
         <tr>
@@ -9,26 +9,20 @@
         </tr>
       </thead>
       <tbody>
-        <!-- row 1 -->
-        <tr>
-          <th>1</th>
-          <td>Cy Ganderton</td>
-        </tr>
-        <!-- row 2 -->
-        <tr>
-          <th>2</th>
-          <td>Hart Hagerty</td>
-        </tr>
-        <!-- row 3 -->
-        <tr>
-          <th>3</th>
-          <td>Brice Swyre</td>
+        <tr v-for="row in props.dataTable">
+          <th>{{ row.id }}</th>
+          <td>{{ row.value }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { DataTable } from "~~/types";
+const props = defineProps({
+  dataTable: { type: Object as PropType<DataTable[]> },
+});
+</script>
 
 <style scoped></style>

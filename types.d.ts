@@ -1,5 +1,9 @@
-export interface navTable {
+export interface NavTable {
   name: string;
   pathway: string;
-  subTables?: navTable[];
+  subTables?: NavTable[];
+}
+export interface DataTable {
+  id: number;
+  value: string;
 }

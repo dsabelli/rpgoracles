@@ -4,11 +4,8 @@
       <NuxtLink to="/">RPG Oracles</NuxtLink>
     </div>
     <div class="z-10">
-      <ul
-        class="menu menu-horizontal bg-base-100 rounded-box p-2"
-        v-for="table in tables"
-      >
-        <li tabindex="0">
+      <ul class="menu menu-horizontal bg-base-100 rounded-box p-2">
+        <li tabindex="0" v-for="table in tables">
           <span
             ><NuxtLink :to="`/tables/${table.pathway}`">
               {{ table.name }}</NuxtLink
@@ -22,7 +19,7 @@
                   >{{ subTable.name }}</NuxtLink
                 ></span
               >
-              <ul class="bg-base-100 z-20">
+              <ul class="bg-base-100">
                 <li tabindex="0" v-for="subSubTable in subTable.subTables">
                   <span
                     ><NuxtLink
@@ -35,6 +32,7 @@
             </li>
           </ul>
         </li>
+        <li tabindex="0"><NuxtLink to="/generators">Generators</NuxtLink></li>
       </ul>
     </div>
   </div>
