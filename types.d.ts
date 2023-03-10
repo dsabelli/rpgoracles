@@ -3,7 +3,15 @@ export interface NavTable {
   pathway: string;
   subTables?: NavTable[];
 }
+export interface OracleTable {
+  entry: number;
+  value: string;
+}
 export interface DataTable {
   id: number;
-  value: string;
+  name: string;
+  description: string;
+  tags: string[];
+  table: OracleTable;
+  image: string;
 }
