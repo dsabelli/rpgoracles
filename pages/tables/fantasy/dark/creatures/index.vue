@@ -1,7 +1,7 @@
 <template>
   <div>
     Mork Borg Creatures
-    <Table v-if="dataTable" :dataTable="dataTable"></Table>
+    <Table v-if="dataTable" :dataTable="dataTable[0]"></Table>
   </div>
 </template>
 
@@ -9,8 +9,10 @@
 import { DataTable } from "~~/types";
 
 const { data: dataTable } = await useFetch<DataTable[]>(
-  "http://localhost:3000/creatures"
+  "http://localhost:3000/tables"
 );
+console.log(dataTable);
+
 if (!dataTable.value) {
   throw createError({
     statusCode: 404,
