@@ -16,8 +16,8 @@
 // //     );
 // //   return path;
 // // };
-import { navTable } from "~~/types";
-export const tables: navTable[] = [
+import { NavTable } from "~~/types";
+export const DataTables: NavTable[] = [
   { name: "Solo Oracles", pathway: "solo-oracles" },
   { name: "General", pathway: "general" },
   {

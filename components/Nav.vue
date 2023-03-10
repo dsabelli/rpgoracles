@@ -5,7 +5,7 @@
     </div>
     <div class="z-10">
       <ul class="menu menu-horizontal bg-base-100 rounded-box p-2">
-        <li tabindex="0" v-for="table in tables">
+        <li tabindex="0" v-for="table in DataTables">
           <span
             ><NuxtLink :to="`/tables/${table.pathway}`">
               {{ table.name }}</NuxtLink
@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { tables } from "~~/pages/tables/tables";
+import { DataTables } from "~~/pages/tables/tables";
 </script>
 
 <style scoped></style>
