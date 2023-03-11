@@ -34,11 +34,11 @@ const isParentPath = (subtags: Subtag[]): boolean => {
 };
 
 //if user is currently on a [document].vue page, add the id onto the end of the path
-//if the user is currently on a parent path, add the first subtag to the route
+//if the user is currently on a parent path and has subtags add the first subtag to the route,
 //else go to the specific documents path
 const path = route.params.document
   ? `${route.path}-${dataTable.id}`
-  : isParentPath(subtags)
+  : isParentPath(subtags) && dataTable.subtags.length
   ? `${route.path}/${dataTable.subtags[0]}/${dataTable.document}-${dataTable.id}`
   : `${route.path}/${dataTable.document}-${dataTable.id}`;
 </script>

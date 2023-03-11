@@ -1,21 +1,20 @@
 <template>
-  <h2>General Index</h2>
-  <div v-if="dataTable" v-for="t in dataTable">
+  <div>
     <Card
-      v-if="t.tags.includes('general') && subtags"
+      v-if="dataTable && subtags"
       :subtags="subtags"
-      :dataTable="t"
-    />
+      :dataTable="dataTable[0]"
+    ></Card>
   </div>
 </template>
 
 <script setup lang="ts">
 import { DataTable, Subtag } from "~~/types";
 
+const { document } = useRoute().params;
 const { data: dataTable } = await useFetch<DataTable[]>(
-  "http://localhost:3000/tables"
+  `http://localhost:3000/tables/?document=${document}`
 );
-
 const { data: subtags } = await useFetch<Subtag[]>(
   `http://localhost:3000/subtags`
 );
