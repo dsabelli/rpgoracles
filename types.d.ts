@@ -1,7 +1,16 @@
-export interface NavTable {
+export interface Tag {
   name: string;
-  pathway: string;
-  subTables?: NavTable[];
+  path: string;
+}
+export interface Subtag {
+  name: string;
+  subtag: string;
+  parent: string;
+}
+export interface Document {
+  name: string;
+  subtag: string;
+  path: string;
 }
 export interface OracleTable {
   entry: number;
@@ -14,6 +23,7 @@ export interface DataTable {
   date: Date;
   document: string;
   tags: string[];
+  subtags: string[];
   table: OracleTable[];
   image: string;
 }

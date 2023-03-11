@@ -1,15 +1,15 @@
 <template>
-  <h2>High Fantasy</h2>
-  <div v-if="dataTable" v-for="t in dataTable">
-    <Card v-if="t.subtags.includes('high')" :dataTable="t" />
+  <div>
+    <Table v-if="dataTable" :dataTable="dataTable[0]"></Table>
   </div>
 </template>
 
 <script setup lang="ts">
 import { DataTable } from "~~/types";
 
+const { id } = useRoute().params;
 const { data: dataTable } = await useFetch<DataTable[]>(
-  "http://localhost:3000/tables"
+  `http://localhost:3000/tables/?id=${id}`
 );
 
 if (!dataTable.value) {

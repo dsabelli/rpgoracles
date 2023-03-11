@@ -1,10 +1,10 @@
 <template>
   <div class="overflow-x-auto">
-    {{ props.dataTable.name }}
+    {{ dataTable.name }}
     <table
       class="table table-compact table-zebra w-full z-0"
-      v-if="props.dataTable"
-      :key="props.dataTable.id"
+      v-if="dataTable"
+      :key="dataTable.id"
     >
       <!-- head -->
       <thead>
@@ -25,16 +25,11 @@
 
 <script setup lang="ts">
 import { DataTable, OracleTable } from "~~/types";
-// interface Props {
-//   dataTable: DataTable;
-// }
-// const props = defineProps<Props>();
-const props = defineProps({
+const { dataTable } = defineProps({
   dataTable: { type: Object as PropType<DataTable>, required: true },
 });
-console.log(props.dataTable.table);
 
-const oracleTable: OracleTable = props.dataTable.table;
+const oracleTable: OracleTable[] = dataTable.table;
 </script>
 
 <style scoped></style>

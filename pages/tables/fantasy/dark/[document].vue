@@ -1,17 +1,16 @@
 <template>
   <div>
-    Mork Borg Creatures
-    <Table v-if="dataTable" :dataTable="dataTable[0]"></Table>
+    <Card v-if="dataTable" :dataTable="dataTable[0]"></Card>
   </div>
 </template>
 
 <script setup lang="ts">
 import { DataTable } from "~~/types";
 
+const { document } = useRoute().params;
 const { data: dataTable } = await useFetch<DataTable[]>(
-  "http://localhost:3000/tables"
+  `http://localhost:3000/tables/?document=${document}`
 );
-console.log(dataTable);
 
 if (!dataTable.value) {
   throw createError({

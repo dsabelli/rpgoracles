@@ -1,4 +1,16 @@
 {
+  "tags": [
+    { "path": "solo-oracles", "name": "Solo Oracles" },
+    { "path": "general", "name": "General" },
+    { "path": "fantasy", "name": "Fantasy" },
+    { "path": "horror", "name": "Horror" },
+    { "path": "science-fiction", "name": "Science Fiction" }
+  ],
+  "subtags": [
+    { "subtag": "dark", "parent": "fantasy", "name": "Dark Fantasy" },
+    { "subtag": "high", "parent": "fantasy", "name": "High Fantasy" }
+  ],
+
   "tables": [
     {
       "id": 1,
@@ -6,7 +18,8 @@
       "date": "2023-03-11",
       "document": "creatures",
       "description": "A table of creatures for Mork Borg",
-      "tags": ["fantasy", "dark", "d100"],
+      "tags": ["fantasy", "d100"],
+      "subtags": ["dark"],
       "image": "https://picsum.photos/300/200",
       "table": [
         { "entry": 1, "value": "asda" },
@@ -115,9 +128,10 @@
       "id": 2,
       "name": "dark fantasy traps",
       "date": "2023-03-11",
-      "document": "creatures",
+      "document": "traps",
       "description": "A table of traps for Mork Borg",
-      "tags": ["fantasy", "dark", "d100"],
+      "tags": ["fantasy", "d100"],
+      "subtags": ["dark"],
       "image": "https://picsum.photos/300/200",
       "table": [
         { "entry": 1, "value": "trap" },
@@ -228,7 +242,8 @@
       "date": "2023-03-11",
       "document": "names",
       "description": "A table of names for The One Ring",
-      "tags": ["fantasy", "high", "d100"],
+      "tags": ["fantasy", "d100"],
+      "subtags": ["high"],
       "image": "https://picsum.photos/300/200",
       "table": [
         { "entry": 1, "value": "Frodo" },
