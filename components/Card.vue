@@ -23,18 +23,22 @@ const { dataTable, subtags } = defineProps({
   dataTable: { type: Object as PropType<DataTable>, required: true },
   subtags: { type: Array as PropType<Subtag[]>, required: true },
 });
-console.log(subtags);
 
-const parentPath = (): boolean => {
+//loop through all subtags, if the current route path includes
+//a subtag, then it is not a parent path, so return false, else true
+const isParentPath = (subtags: Subtag[]): boolean => {
   for (let tag of subtags) {
-    if (dataTable.subtags.includes(tag.subtag)) return true;
+    if (route.path.includes(tag.subtag)) return false;
   }
-  return false;
+  return true;
 };
 
+//if user is currently on a [document].vue page, add the id onto the end of the path
+//if the user is currently on a parent path, add the first subtag to the route
+//else go to the specific documents path
 const path = route.params.document
   ? `${route.path}-${dataTable.id}`
-  : parentPath()
+  : isParentPath(subtags)
   ? `${route.path}/${dataTable.subtags[0]}/${dataTable.document}-${dataTable.id}`
   : `${route.path}/${dataTable.document}-${dataTable.id}`;
 </script>
