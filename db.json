@@ -3,6 +3,8 @@
     {
       "id": 1,
       "name": "dark fantasy creatures",
+      "date": "2023-03-11",
+      "document": "creatures",
       "description": "A table of creatures for Mork Borg",
       "tags": ["fantasy", "dark", "d100"],
       "image": "https://picsum.photos/300/200",
@@ -112,6 +114,8 @@
     {
       "id": 2,
       "name": "dark fantasy traps",
+      "date": "2023-03-11",
+      "document": "creatures",
       "description": "A table of traps for Mork Borg",
       "tags": ["fantasy", "dark", "d100"],
       "image": "https://picsum.photos/300/200",
@@ -221,6 +225,8 @@
     {
       "id": 3,
       "name": "high fantasy names",
+      "date": "2023-03-11",
+      "document": "names",
       "description": "A table of names for The One Ring",
       "tags": ["fantasy", "high", "d100"],
       "image": "https://picsum.photos/300/200",

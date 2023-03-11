@@ -11,7 +11,9 @@ export interface DataTable {
   id: number;
   name: string;
   description: string;
+  date: Date;
+  document: string;
   tags: string[];
-  table: OracleTable;
+  table: OracleTable[];
   image: string;
 }
