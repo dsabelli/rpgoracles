@@ -1,18 +1,24 @@
 <template>
   <div>
-    <Card v-if="dataTable" :dataTable="dataTable[0]"></Card>
+    <Card
+      v-if="dataTable && subtags"
+      :subtags="subtags"
+      :dataTable="dataTable[0]"
+    ></Card>
   </div>
 </template>
 
 <script setup lang="ts">
-import { DataTable } from "~~/types";
+import { DataTable, Subtag } from "~~/types";
 
 const { document } = useRoute().params;
 const { data: dataTable } = await useFetch<DataTable[]>(
   `http://localhost:3000/tables/?document=${document}`
 );
-
-if (!dataTable.value) {
+const { data: subtags } = await useFetch<Subtag[]>(
+  `http://localhost:3000/subtags`
+);
+if (!dataTable.value || !subtags.value) {
   throw createError({
     statusCode: 404,
     statusMessage: "Product not found",
