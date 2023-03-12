@@ -1,10 +1,6 @@
 <template>
-  <div>
-    <Card
-      v-if="dataTable && subtags"
-      :subtags="subtags"
-      :dataTable="dataTable[0]"
-    ></Card>
+  <div v-for="t in dataTable">
+    <Card v-if="dataTable && subtags" :subtags="subtags" :dataTable="t"></Card>
   </div>
 </template>
 

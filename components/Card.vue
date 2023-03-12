@@ -28,7 +28,7 @@ const { dataTable, subtags } = defineProps({
 //a subtag, then it is not a parent path, so return false, else true
 const isParentPath = (subtags: Subtag[]): boolean => {
   for (let tag of subtags) {
-    if (route.path.includes(tag.subtag)) return false;
+    if (route.fullPath.includes(tag.subtag)) return false;
   }
   return true;
 };
@@ -37,10 +37,10 @@ const isParentPath = (subtags: Subtag[]): boolean => {
 //if the user is currently on a parent path and has subtags add the first subtag to the route,
 //else go to the specific documents path
 const path = route.params.document
-  ? `${route.path}-${dataTable.id}`
+  ? `${route.fullPath}-${dataTable.id}`
   : isParentPath(subtags) && dataTable.subtags.length
-  ? `${route.path}/${dataTable.subtags[0]}/${dataTable.document}-${dataTable.id}`
-  : `${route.path}/${dataTable.document}-${dataTable.id}`;
+  ? `${route.fullPath}/${dataTable.subtags[0]}/${dataTable.document}-${dataTable.id}`
+  : `${route.fullPath}/${dataTable.document}-${dataTable.id}`;
 </script>
 
 <style scoped></style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar bg-base-100 px-0">
+  <!-- <div class="navbar bg-base-100 px-0">
     <div class="flex-none">
       <NuxtLink to="/">RPG Oracles</NuxtLink>
     </div>
@@ -21,12 +21,56 @@
                 ></span
               >
               <ul class="bg-base-100">
-                <li tabindex="0" v-for="table in dataTable">
+                <li tabindex="0" v-for="document in documents">
+                  <span> -->
+  <!-- This NuxtLink is causing the Vue Router Warning -->
+  <!-- <NuxtLink
+                      v-if="document.subtags.includes(subtag.subtag)"
+                      :to="`/tables/${tag.path}/${subtag.subtag}/${document.document}`"
+                      >{{
+                        document.document.slice(0, 1).toUpperCase() +
+                        document.document.slice(1)
+                      }}</NuxtLink
+                    ></span
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li tabindex="0"><NuxtLink to="/generators">Generators</NuxtLink></li>
+      </ul>
+    </div>
+  </div> -->
+  <div class="navbar bg-base-100 px-0">
+    <div class="flex-none">
+      <NuxtLink to="/">RPG Oracles</NuxtLink>
+    </div>
+    <div class="z-10">
+      <ul class="menu menu-horizontal bg-base-100 rounded-box p-2">
+        <li tabindex="0" v-for="navPath in NavPaths">
+          <span
+            ><NuxtLink :to="`/tables/${navPath.pathway}`">
+              {{ navPath.name }}</NuxtLink
+            ></span
+          >
+          <ul class="menu bg-base-100">
+            <li tabindex="0" v-for="subPath in navPath.subPathways">
+              <span
+                ><NuxtLink
+                  :to="`/tables/${navPath.pathway}/${subPath.pathway}`"
+                  >{{ subPath.name }}</NuxtLink
+                ></span
+              >
+              <ul class="bg-base-100 z-20">
+                <li tabindex="0" v-for="document in documents">
                   <span
+                    :class="
+                      document.subtag.includes(subPath.pathway) ? '' : 'hidden'
+                    "
                     ><NuxtLink
-                      v-if="table.subtags.includes(subtag.subtag)"
-                      :to="`/tables/${tag.path}/${subtag.subtag}/${table.document}`"
-                      >{{ table.document }}</NuxtLink
+                      :to="`/tables/${navPath.pathway}/${subPath.pathway}/${document.document}`"
+                      >{{ document.name }}</NuxtLink
                     ></span
                   >
                 </li>
@@ -41,16 +85,14 @@
 </template>
 
 <script setup lang="ts">
-import { Tag, Subtag, Document, DataTable } from "~~/types";
-const { data: tags } = await useFetch<Tag[]>(`http://localhost:3000/tags`);
-const { data: subtags } = await useFetch<Subtag[]>(
-  `http://localhost:3000/subtags`
-);
-const { data: dataTable } = await useFetch<DataTable[]>(
-  `http://localhost:3000/tables`
+import { Document } from "~~/types";
+import { NavPaths } from "~~/pages/tables/tables";
+
+const { data: documents } = await useFetch<Document[]>(
+  `http://localhost:3000/documents`
 );
 
-if (!tags.value) {
+if (!documents.value) {
   throw createError({
     statusCode: 404,
     statusMessage: "Product not found",
