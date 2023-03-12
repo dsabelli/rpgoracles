@@ -1,6 +1,6 @@
 <template>
-  <div v-for="t in dataTable">
-    <Card v-if="dataTable && subtags" :subtags="subtags" :dataTable="t"></Card>
+  <div v-if="dataTable && subtags" v-for="t in dataTable">
+    <Card :subtags="subtags" :dataTable="t" />
   </div>
 </template>
 
@@ -8,6 +8,8 @@
 import { DataTable, Subtag } from "~~/types";
 
 const { document } = useRoute().params;
+const path = useRoute().path;
+
 const { data: dataTable } = await useFetch<DataTable[]>(
   `http://localhost:3000/tables/?document=${document}`
 );

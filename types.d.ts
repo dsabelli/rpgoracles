@@ -27,8 +27,8 @@ export interface DataTable {
   description: string;
   date: Date;
   document: string;
-  tags: string[];
-  subtags: string[];
+  tag: string;
+  subtag: string;
   table: OracleTable[];
   image: string;
 }

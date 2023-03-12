@@ -2,7 +2,7 @@
   <h2>High Fantasy</h2>
   <div v-if="dataTable" v-for="t in dataTable">
     <Card
-      v-if="t.subtags.includes('high') && subtags"
+      v-if="t.subtag === 'high' && subtags"
       :subtags="subtags"
       :dataTable="t"
     />

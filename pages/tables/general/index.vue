@@ -2,7 +2,7 @@
   <h2>General Index</h2>
   <div v-if="dataTable" v-for="t in dataTable">
     <Card
-      v-if="t.tags.includes('general') && subtags"
+      v-if="t.tag === 'general' && subtags"
       :subtags="subtags"
       :dataTable="t"
     />
