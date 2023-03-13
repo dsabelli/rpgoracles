@@ -1,7 +1,7 @@
 <template>
   <h2>Solo Oracle Index</h2>
   <div v-if="dataTable" v-for="t in dataTable">
-    <Card v-if="t.tag === 'general'" :dataTable="t" />
+    <Card v-if="t.tag === 'solo-oracles'" :dataTable="t" />
   </div>
 </template>
 
