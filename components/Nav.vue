@@ -78,7 +78,6 @@
             </li>
           </ul>
         </li>
-        <li tabindex="0"><NuxtLink to="/generators">Generators</NuxtLink></li>
       </ul>
     </div>
   </div>
