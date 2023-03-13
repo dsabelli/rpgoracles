@@ -5,11 +5,14 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "test": "vitest --run --reporter verbose --globals"
   },
   "devDependencies": {
+    "@nuxt/test-utils": "^3.2.3",
     "@nuxtjs/tailwindcss": "^6.4.1",
     "daisyui": "^2.51.3",
-    "nuxt": "^3.2.3"
+    "nuxt": "^3.2.3",
+    "vitest": "^0.29.2"
   }
 }
