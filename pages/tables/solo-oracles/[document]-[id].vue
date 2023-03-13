@@ -1,15 +1,15 @@
 <template>
-  <h2>Solo Oracle Index</h2>
-  <div v-if="dataTable" v-for="t in dataTable">
-    <Card v-if="t.tag === 'general'" :dataTable="t" />
+  <div>
+    <Table v-if="dataTable" :dataTable="dataTable[0]"></Table>
   </div>
 </template>
 
 <script setup lang="ts">
 import { DataTable } from "~~/types";
 
+const { id } = useRoute().params;
 const { data: dataTable } = await useFetch<DataTable[]>(
-  "http://localhost:3001/tables"
+  `http://localhost:3001/tables/?id=${id}`
 );
 
 if (!dataTable.value) {
