@@ -1,52 +1,9 @@
 <template>
-  <!-- <div class="navbar bg-base-100 px-0">
+  <div class="navbar bg-base-100 px-0 max-w-screen-lg justify-between">
     <div class="flex-none">
       <NuxtLink to="/">RPG Oracles</NuxtLink>
     </div>
-    <div class="z-10">
-      <ul class="menu menu-horizontal bg-base-100 rounded-box p-2">
-        <li tabindex="0" v-for="tag in tags">
-          <span
-            ><NuxtLink :to="`/tables/${tag.path}`">
-              {{ tag.name }}</NuxtLink
-            ></span
-          >
-          <ul class="menu bg-base-100">
-            <li tabindex="0" v-for="subtag in subtags">
-              <span
-                ><NuxtLink
-                  v-if="tag.path === subtag.parent"
-                  :to="`/tables/${tag.path}/${subtag.subtag}`"
-                  >{{ subtag.name }}</NuxtLink
-                ></span
-              >
-              <ul class="bg-base-100">
-                <li tabindex="0" v-for="document in documents">
-                  <span> -->
-  <!-- This NuxtLink is causing the Vue Router Warning -->
-  <!-- <NuxtLink
-                      v-if="document.subtags.includes(subtag.subtag)"
-                      :to="`/tables/${tag.path}/${subtag.subtag}/${document.document}`"
-                      >{{
-                        document.document.slice(0, 1).toUpperCase() +
-                        document.document.slice(1)
-                      }}</NuxtLink
-                    ></span
-                  >
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li tabindex="0"><NuxtLink to="/generators">Generators</NuxtLink></li>
-      </ul>
-    </div>
-  </div> -->
-  <div class="navbar bg-base-100 px-0">
-    <div class="flex-none">
-      <NuxtLink to="/">RPG Oracles</NuxtLink>
-    </div>
-    <div class="z-10">
+    <div class="w-full flex justify-center z-10">
       <ul class="menu menu-horizontal bg-base-100 rounded-box p-2">
         <li tabindex="0" v-for="navPath in NavPaths">
           <span
@@ -88,7 +45,7 @@ import { Document } from "~~/types";
 import { NavPaths } from "~~/pages/tables/tables";
 
 const { data: documents } = await useFetch<Document[]>(
-  `http://localhost:3000/documents`
+  `http://localhost:3001/documents`
 );
 
 if (!documents.value) {

@@ -9,7 +9,7 @@ import { DataTable } from "~~/types";
 
 const { id } = useRoute().params;
 const { data: dataTable } = await useFetch<DataTable[]>(
-  `http://localhost:3000/tables/?id=${id}`
+  `http://localhost:3001/tables/?id=${id}`
 );
 
 if (!dataTable.value) {

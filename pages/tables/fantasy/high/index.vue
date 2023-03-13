@@ -1,25 +1,18 @@
 <template>
   <h2>High Fantasy</h2>
   <div v-if="dataTable" v-for="t in dataTable">
-    <Card
-      v-if="t.subtag === 'high' && subtags"
-      :subtags="subtags"
-      :dataTable="t"
-    />
+    <Card v-if="t.subtag === 'high'" :dataTable="t" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { DataTable, Subtag } from "~~/types";
+import { DataTable } from "~~/types";
 
 const { data: dataTable } = await useFetch<DataTable[]>(
-  "http://localhost:3000/tables"
+  "http://localhost:3001/tables"
 );
 
-const { data: subtags } = await useFetch<Subtag[]>(
-  `http://localhost:3000/subtags`
-);
-if (!dataTable.value || !subtags.value) {
+if (!dataTable.value) {
   throw createError({
     statusCode: 404,
     statusMessage: "Product not found",

@@ -1,7 +1,10 @@
 <template>
   <div class="hero h-3/4 bg-base-200">
     <div class="hero-content flex-col md:flex-row-reverse">
-      <img src="../stock.jpg" class="max-w-sm rounded-lg shadow-2xl" />
+      <img
+        src="../assets/static/stock.jpg"
+        class="max-w-sm rounded-lg shadow-2xl"
+      />
       <div>
         <h1 class="text-5xl font-bold">Box Office News!</h1>
         <p class="py-6">

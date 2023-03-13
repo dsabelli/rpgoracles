@@ -14,5 +14,12 @@
     "daisyui": "^2.51.3",
     "nuxt": "^3.2.3",
     "vitest": "^0.29.2"
+  },
+  "overrides": {
+    "vue": "latest"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.4.7",
+    "pinia": "^2.0.33"
   }
 }

@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="subtags"
     class="card w-64 bg-base-100 shadow-xl"
     :class="
       isParentPath(route, subtags)
@@ -28,19 +29,34 @@
 import { DataTable, Subtag } from "~~/types";
 const route = useRoute();
 
-const { dataTable, subtags } = defineProps({
+const { dataTable } = defineProps({
   dataTable: { type: Object as PropType<DataTable>, required: true },
-  subtags: { type: Array as PropType<Subtag[]>, required: true },
 });
 
+const { data: subtags } = await useFetch<Subtag[]>(
+  `http://localhost:3001/subtags`
+);
+if (!subtags.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Product not found",
+    fatal: true,
+  });
+}
 //if user is currently on a [document].vue page, add the id onto the end of the path
 //if the user is currently on a parent path and has subtags add the first subtag to the route,
 //else go to the specific documents path
-const path = route.params.document
-  ? `${route.fullPath}-${dataTable.id}`
-  : isParentPath(route, subtags) && dataTable.subtag.length
-  ? `${route.fullPath}/${dataTable.subtag}/${dataTable.document}-${dataTable.id}`
-  : `${route.fullPath}/${dataTable.document}-${dataTable.id}`;
-</script>
+let path = ref("");
 
+const getPath = (): string =>
+  route.params.document
+    ? `${route.fullPath}-${dataTable.id}`
+    : subtags.value &&
+      isParentPath(route, subtags.value) &&
+      dataTable.subtag.length
+    ? `${route.fullPath}/${dataTable.subtag}/${dataTable.document}-${dataTable.id}`
+    : `${route.fullPath}/${dataTable.document}-${dataTable.id}`;
+
+path.value = getPath();
+</script>
 <style scoped></style>

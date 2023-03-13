@@ -13,10 +13,10 @@ import { DataTable, Subtag } from "~~/types";
 
 const { document } = useRoute().params;
 const { data: dataTable } = await useFetch<DataTable[]>(
-  `http://localhost:3000/tables/?document=${document}`
+  `http://localhost:3001/tables/?document=${document}`
 );
 const { data: subtags } = await useFetch<Subtag[]>(
-  `http://localhost:3000/subtags`
+  `http://localhost:3001/subtags`
 );
 if (!dataTable.value || !subtags.value) {
   throw createError({
