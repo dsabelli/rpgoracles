@@ -16,7 +16,7 @@ const { data: dataTable } = await useFetch<DataTable[]>(
 if (!dataTable.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: "Product not found",
+    statusMessage: "Page not found",
     fatal: true,
   });
 }

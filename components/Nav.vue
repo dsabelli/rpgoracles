@@ -51,7 +51,7 @@ const { data: documents } = await useFetch<Document[]>(
 if (!documents.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: "Product not found",
+    statusMessage: "Page not found",
     fatal: true,
   });
 }

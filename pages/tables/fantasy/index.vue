@@ -22,7 +22,7 @@ const { data: subtags } = await useFetch<Subtag[]>(
 if (!dataTable.value || !subtags.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: "Product not found",
+    statusMessage: "Page not found",
     fatal: true,
   });
 }
