@@ -7,7 +7,6 @@
 
 <script setup lang="ts">
 const { data: api } = await useFetch("/api/hiMom");
-
 const info = ref(api);
 </script>
 
