@@ -42,7 +42,7 @@
 
 <script setup lang="ts">
 import { Document } from "~~/types";
-import { NavPaths } from "~~/pages/tables/tables";
+import { NavPaths } from "~~/tables";
 
 const { data: documents } = await useFetch<Document[]>(
   `http://localhost:3001/documents`
