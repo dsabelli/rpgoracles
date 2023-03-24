@@ -7,7 +7,7 @@ export const useDocumentStore = defineStore("documents", {
   }),
   getters: {},
   actions: {
-    async getdocuments() {
+    async getDocuments() {
       this.docsLoading = true;
       const res = await fetch(baseUrl + "/documents");
       const data = await res.json();
