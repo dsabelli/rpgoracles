@@ -1,4 +1,3 @@
-import baseUrl from "./baseUrl";
 import { doc_types } from "@prisma/client";
 export const useDocumentStore = defineStore("documents", {
   state: () => ({
@@ -9,8 +8,7 @@ export const useDocumentStore = defineStore("documents", {
   actions: {
     async getDocuments() {
       this.docsLoading = true;
-      const res = await fetch(baseUrl + "/documents");
-      const data = await res.json();
+      const data = await $fetch("/api/documents");
       this.documents = data;
       this.docsLoading = false;
     },

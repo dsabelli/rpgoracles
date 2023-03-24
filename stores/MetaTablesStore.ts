@@ -1,4 +1,3 @@
-import baseUrl from "./baseUrl";
 import { meta_tables } from "@prisma/client";
 export const useMetaTablesStore = defineStore("metaTables", {
   state: () => ({
@@ -9,8 +8,7 @@ export const useMetaTablesStore = defineStore("metaTables", {
   actions: {
     async getMetaTables() {
       this.tablesLoading = true;
-      const res = await fetch(baseUrl + "/metaTables");
-      const data = await res.json();
+      const data = await $fetch("/api/metaTables");
       this.metaTables = data;
       this.tablesLoading = false;
     },
