@@ -4,34 +4,45 @@
       <NuxtLink to="/">RPG Oracles</NuxtLink>
     </div>
     <div class="w-full flex justify-center z-10">
-      <ul class="menu menu-horizontal bg-base-100 rounded-box p-2">
-        <li tabindex="0" v-for="navPath in NavPaths">
+      <ul
+        v-if="mainTags"
+        class="menu menu-horizontal bg-base-100 rounded-box p-2"
+      >
+        <li tabindex="0" v-for="mainTag in mainTags">
           <span
-            ><NuxtLink :to="`/tables/${navPath.pathway}`">
-              {{ navPath.name }}</NuxtLink
+            ><NuxtLink :to="`/tables/${mainTag.tag_path}`">
+              {{ mainTag.tag_name }}</NuxtLink
             ></span
           >
-          <ul class="menu bg-base-100">
-            <li tabindex="0" v-for="subPath in navPath.subPathways">
-              <span
+          <ul class="menu bg-base-100" v-if="subTags">
+            <li tabindex="0" v-for="subTag in subTags">
+              <span :class="subTag.tag_id === mainTag.id ? '' : 'hidden'"
                 ><NuxtLink
-                  :to="`/tables/${navPath.pathway}/${subPath.pathway}`"
-                  >{{ subPath.name }}</NuxtLink
+                  :to="`/tables/${mainTag.tag_path}/${subTag.tag_path}`"
+                  >{{ subTag.tag_name }}</NuxtLink
                 ></span
               >
-              <ul class="bg-base-100 z-20">
+              <ul class="bg-base-100 z-20" v-if="documents">
                 <li tabindex="0" v-for="document in documents">
                   <span
-                    :class="
-                      document.subtag.includes(subPath.pathway) ? '' : 'hidden'
-                    "
+                    :class="document.subtag_id === subTag.id ? '' : 'hidden'"
                     ><NuxtLink
-                      :to="`/tables/${navPath.pathway}/${subPath.pathway}/${document.document}`"
-                      >{{ document.name }}</NuxtLink
+                      :to="`/tables/${mainTag.tag_path}/${subTag.tag_path}/${document.doc_path}`"
+                      >{{ document.doc_name }}</NuxtLink
                     ></span
                   >
                 </li>
               </ul>
+            </li>
+          </ul>
+          <ul class="menu bg-base-100" v-if="documents">
+            <li tabindex="0" v-for="document in documents">
+              <span :class="document.tag_id === mainTag.id ? '' : 'hidden'"
+                ><NuxtLink
+                  :to="`/tables/${mainTag.tag_path}/${document.doc_path}`"
+                  >{{ document.doc_name }}</NuxtLink
+                ></span
+              >
             </li>
           </ul>
         </li>
@@ -41,17 +52,21 @@
 </template>
 
 <script setup lang="ts">
-import { Document } from "~~/types";
-import { NavPaths } from "~~/tables";
+import { storeToRefs } from "pinia";
+import { useTagStore } from "~~/stores/TagStore";
+const tagsStore = useTagStore();
+const docsStore = useDocumentStore();
 
-const { data: documents } = await useFetch<Document[]>(
-  `http://localhost:3001/documents`
-);
+tagsStore.getMainTags();
+tagsStore.getSubTags();
+docsStore.getdocuments();
+const { tagsLoading, mainTags, subTags } = storeToRefs(tagsStore);
+const { docsLoading, documents } = storeToRefs(docsStore);
 
-if (!documents.value) {
+if (!documents.value || !mainTags.value || !subTags.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: "Page not found",
+    statusMessage: "Server Error, please try again later",
     fatal: true,
   });
 }
