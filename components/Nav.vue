@@ -18,6 +18,7 @@
             <li tabindex="0" v-for="subTag in subTags">
               <span :class="subTag.tag_id === mainTag.id ? '' : 'hidden'"
                 ><NuxtLink
+                  v-if="subTag.tag_id === mainTag.id"
                   :to="`/tables/${mainTag.tag_path}/${subTag.tag_path}`"
                   >{{ subTag.tag_name }}</NuxtLink
                 ></span
@@ -27,6 +28,10 @@
                   <span
                     :class="document.subtag_id === subTag.id ? '' : 'hidden'"
                     ><NuxtLink
+                      v-if="
+                        document.subtag_id === subTag.id &&
+                        subTag.tag_id === mainTag.id
+                      "
                       :to="`/tables/${mainTag.tag_path}/${subTag.tag_path}/${document.doc_path}`"
                       >{{ document.doc_name }}</NuxtLink
                     ></span
@@ -39,6 +44,7 @@
             <li tabindex="0" v-for="document in documents">
               <span :class="document.tag_id === mainTag.id ? '' : 'hidden'"
                 ><NuxtLink
+                  v-if="document.tag_id === mainTag.id"
                   :to="`/tables/${mainTag.tag_path}/${document.doc_path}`"
                   >{{ document.doc_name }}</NuxtLink
                 ></span
@@ -59,9 +65,9 @@ const docsStore = useDocumentStore();
 
 tagsStore.getMainTags();
 tagsStore.getSubTags();
-docsStore.getdocuments();
-const { tagsLoading, mainTags, subTags } = storeToRefs(tagsStore);
-const { docsLoading, documents } = storeToRefs(docsStore);
+docsStore.getDocuments();
+const { mainTags, subTags } = storeToRefs(tagsStore);
+const { documents } = storeToRefs(docsStore);
 
 if (!documents.value || !mainTags.value || !subTags.value) {
   throw createError({
