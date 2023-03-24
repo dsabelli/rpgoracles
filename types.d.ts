@@ -1,39 +1,3 @@
-export interface main_tags {
-  id: number;
-  tag_name: string;
-  tag_path: string;
-}
-export interface Subtag {
-  name: string;
-  path: string;
-  parent: string;
-}
-export interface Document {
-  name: string;
-  subtag: string[];
-  document: string;
-}
-export interface NavPath {
-  name: string;
-  pathway: string;
-  subPathways?: NavPath[];
-}
-export interface OracleTable {
-  entry: number;
-  value: string;
-}
-export interface DataTable {
-  id: number;
-  name: string;
-  description: string;
-  date: Date;
-  document: string;
-  tag: string;
-  subtag: string;
-  table: OracleTable[];
-  image: string;
-}
-
 export type Json =
   | string
   | number
