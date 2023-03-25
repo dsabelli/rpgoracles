@@ -1,14 +1,13 @@
 <template>
   <h2>High Fantasy</h2>
-  <div v-if="metaTables && subTags" v-for="t in metaTables">
+  <div v-for="t in metaTables">
     <Card
-      v-if="a(documents, document)"
+      v-if="t.doc_id === a(documents, document)"
       :metaTable="t"
       :subTag="subTags.find((s) => s.id === t.subtag_id)"
       :mainTag="mainTags.find((m) => m.id === t.tag_id)"
       :document="documents.find((d) => d.id === t.doc_id)"
     />
-    <p>{{ getSubTagId }}</p>
   </div>
 </template>
 
@@ -26,8 +25,10 @@ const { documents } = storeToRefs(documentStore);
 
 const { document } = useRoute().params;
 
-let a = (documents: doc_types[], document: string | string[]): boolean => {
-  return documents.find((d) => d.doc_path === document) ? true : false;
+//move to composable
+let a = (documents: doc_types[], param: string | string[]) => {
+  const doc = documents.find((d) => d.doc_path === param);
+  return doc ? doc.id : 0;
 };
 
 if (!metaTables || !subTags || !mainTags || !documents) {
