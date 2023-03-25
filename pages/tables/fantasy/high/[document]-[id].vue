@@ -1,18 +1,24 @@
 <template>
-  <div>
-    <Table v-if="dataTable" :dataTable="dataTable[0]"></Table>
+  <div v-if="getMetaTable(metaTables, id)">
+    <Table :dataTable="getMetaTable(metaTables, id)" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { DataTable } from "~~/types";
+import { meta_tables } from ".prisma/client";
+import { storeToRefs } from "pinia";
 
-const { id } = useRoute().params;
-const { data: dataTable } = await useFetch<DataTable[]>(
-  `http://localhost:3001/tables/?id=${id}`
-);
+const metaTablesStore = useMetaTablesStore();
 
-if (!dataTable.value) {
+const { metaTables } = storeToRefs(metaTablesStore);
+
+const id = +useRoute().params.id;
+
+const getMetaTable = (metaTables: meta_tables[], id: number) => {
+  return metaTables.find((m) => m.id === id);
+};
+
+if (!metaTables) {
   throw createError({
     statusCode: 404,
     statusMessage: "Page not found",

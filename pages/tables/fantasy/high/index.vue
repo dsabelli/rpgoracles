@@ -20,7 +20,7 @@ const tagStore = useTagStore();
 const documentStore = useDocumentStore();
 
 const { metaTables } = storeToRefs(metaTablesStore);
-const { mainTags, subTags, getSubTagId } = storeToRefs(tagStore);
+const { mainTags, subTags, getSubTagId, getMainTagId } = storeToRefs(tagStore);
 const { documents } = storeToRefs(documentStore);
 
 if (!metaTables || !subTags || !mainTags || !documents) {
