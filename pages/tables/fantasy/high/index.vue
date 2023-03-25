@@ -1,18 +1,29 @@
 <template>
   <h2>High Fantasy</h2>
-  <div v-if="dataTable" v-for="t in dataTable">
-    <Card v-if="t.subtag === 'high'" :dataTable="t" />
+  <div v-if="metaTables && subTags" v-for="t in metaTables">
+    <Card
+      v-if="t.subtag_id === getSubTagId"
+      :metaTable="t"
+      :subTag="subTags.find((s) => s.id === t.subtag_id)"
+      :mainTag="mainTags.find((m) => m.id === t.tag_id)"
+      :document="documents.find((d) => d.id === t.doc_id)"
+    />
+    <p>{{ getSubTagId }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
-import { DataTable } from "~~/types";
+import { storeToRefs } from "pinia";
 
-const { data: dataTable } = await useFetch<DataTable[]>(
-  "http://localhost:3001/tables"
-);
+const metaTablesStore = useMetaTablesStore();
+const tagStore = useTagStore();
+const documentStore = useDocumentStore();
 
-if (!dataTable.value) {
+const { metaTables } = storeToRefs(metaTablesStore);
+const { mainTags, subTags, getSubTagId } = storeToRefs(tagStore);
+const { documents } = storeToRefs(documentStore);
+
+if (!metaTables || !subTags || !mainTags || !documents) {
   throw createError({
     statusCode: 404,
     statusMessage: "Page not found",
