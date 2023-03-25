@@ -30,8 +30,6 @@
 import { doc_types, main_tags, meta_tables, sub_tags } from ".prisma/client";
 import { PropType } from "vue";
 
-const route = useRoute();
-
 const { metaTable, subTag, mainTag, document } = defineProps({
   metaTable: { type: Object as PropType<meta_tables>, required: true },
   subTag: { type: Object as PropType<sub_tags>, required: false },
@@ -51,7 +49,9 @@ if (!metaTable) {
 //else go to the specific documents path
 let path = ref("");
 
-path.value = `/tables/${mainTag?.tag_path}/${subTag?.tag_path}/${document?.doc_path}-${metaTable.id}`;
+path.value = subTag
+  ? `/tables/${mainTag?.tag_path}/${subTag?.tag_path}/${document?.doc_path}-${metaTable.id}`
+  : `/tables/${mainTag?.tag_path}/${document?.doc_path}-${metaTable.id}`;
 // const getPath = (): string =>
 //   route.params.document
 //     ? `${route.fullPath}-${metaTable.id}`
