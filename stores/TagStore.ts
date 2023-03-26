@@ -6,25 +6,7 @@ export const useTagStore = defineStore("tags", {
     subTags: [] as sub_tags[],
     tagsLoading: false,
   }),
-  getters: {
-    //gets the subtag id for the user's current subpath using the router path
-    getSubTagId(): number {
-      const id = this.subTags.find((s) => useRoute().path.includes(s.tag_path));
-      if (id) {
-        return id.id;
-      }
-      return 0;
-    },
-    getMainTagId(): number {
-      const id = this.mainTags.find((m) =>
-        useRoute().path.includes(m.tag_path)
-      );
-      if (id) {
-        return id.id;
-      }
-      return 0;
-    },
-  },
+  getters: {},
   actions: {
     async getMainTags() {
       this.tagsLoading = true;
