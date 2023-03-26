@@ -10,11 +10,13 @@ datasource db {
 model doc_types {
   id          Int           @id @default(autoincrement())
   doc_name    String        @db.VarChar
-  doc_path    String        @db.VarChar
+  doc_path    String        @unique @db.VarChar
   tag_id      Int?
   subtag_id   Int?
-  sub_tags    sub_tags?     @relation(fields: [subtag_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
-  main_tags   main_tags?    @relation(fields: [tag_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  user_id     Int?
+  sub_tags    sub_tags?     @relation(fields: [subtag_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  main_tags   main_tags?    @relation(fields: [tag_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users       users?        @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   meta_tables meta_tables[]
 }
 
@@ -22,27 +24,28 @@ model main_tags {
   id          Int           @id @default(autoincrement())
   tag_name    String        @unique @db.VarChar
   tag_path    String        @unique @db.VarChar
+  user_id     Int?
   doc_types   doc_types[]
+  users       users?        @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   meta_tables meta_tables[]
   sub_tags    sub_tags[]
 }
 
 model meta_tables {
-  id                                 Int             @id @default(autoincrement())
-  meta_name                          String          @db.VarChar
-  meta_desc                          String          @db.VarChar
-  meta_image                         String          @db.VarChar
-  meta_date                          DateTime        @default(now()) @db.Timestamptz(6)
-  tag_id                             Int
-  subtag_id                          Int?
-  doc_id                             Int
-  user_id                            Int?
-  doc_types                          doc_types       @relation(fields: [doc_id], references: [id], onUpdate: NoAction)
-  sub_tags                           sub_tags?       @relation(fields: [subtag_id], references: [id], onDelete: Restrict, onUpdate: NoAction)
-  main_tags                          main_tags       @relation(fields: [tag_id], references: [id], onUpdate: NoAction)
-  users_meta_tables_user_idTousers   users?          @relation("meta_tables_user_idTousers", fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  table_entries                      table_entries[]
-  users_users_fav_tableTometa_tables users[]         @relation("users_fav_tableTometa_tables")
+  id                               Int             @id @default(autoincrement())
+  meta_date                        DateTime        @default(now()) @db.Timestamptz(6)
+  meta_name                        String          @db.VarChar
+  meta_desc                        String          @db.VarChar
+  meta_image                       String          @db.VarChar
+  tag_id                           Int
+  subtag_id                        Int?
+  doc_id                           Int
+  user_id                          Int?
+  doc_types                        doc_types       @relation(fields: [doc_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sub_tags                         sub_tags?       @relation(fields: [subtag_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  main_tags                        main_tags       @relation(fields: [tag_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users_meta_tables_user_idTousers users?          @relation("meta_tables_user_idTousers", fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  table_entries                    table_entries[]
 }
 
 model sub_tags {
@@ -50,25 +53,32 @@ model sub_tags {
   tag_name    String        @db.VarChar
   tag_path    String        @db.VarChar
   tag_id      Int
+  user_id     Int?
   doc_types   doc_types[]
   meta_tables meta_tables[]
   main_tags   main_tags     @relation(fields: [tag_id], references: [id], onUpdate: NoAction)
+  users       users?        @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model users {
-  id                                       Int           @id @default(autoincrement())
-  email                                    String        @unique @db.VarChar
-  username                                 String        @db.VarChar
-  password                                 String        @db.VarChar
-  created_at                               DateTime?     @default(now()) @db.Timestamptz(6)
-  fav_table                                Int?
-  meta_tables_meta_tables_user_idTousers   meta_tables[] @relation("meta_tables_user_idTousers")
-  meta_tables_users_fav_tableTometa_tables meta_tables?  @relation("users_fav_tableTometa_tables", fields: [fav_table], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  id                                     Int             @id @default(autoincrement())
+  email                                  String          @unique @db.VarChar
+  username                               String          @db.VarChar
+  password                               String          @db.VarChar
+  created_at                             DateTime?       @default(now()) @db.Timestamptz(6)
+  fav_table                              Int?
+  doc_types                              doc_types[]
+  main_tags                              main_tags[]
+  meta_tables_meta_tables_user_idTousers meta_tables[]   @relation("meta_tables_user_idTousers")
+  sub_tags                               sub_tags[]
+  table_entries                          table_entries[]
 }
 
 model table_entries {
   id          Int         @id(map: "table_entry_pkey") @default(autoincrement())
   entry_value String      @db.VarChar
   table_id    Int
-  meta_tables meta_tables @relation(fields: [table_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  user_id     Int?
+  meta_tables meta_tables @relation(fields: [table_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users       users?      @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
