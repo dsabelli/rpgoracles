@@ -63,9 +63,6 @@ import { useTagStore } from "~~/stores/TagStore";
 const tagsStore = useTagStore();
 const docsStore = useDocumentStore();
 
-tagsStore.getMainTags();
-tagsStore.getSubTags();
-docsStore.getDocuments();
 const { mainTags, subTags } = storeToRefs(tagsStore);
 const { documents } = storeToRefs(docsStore);
 
