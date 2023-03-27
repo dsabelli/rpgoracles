@@ -2,7 +2,15 @@
   <div class="max-w-screen-lg mx-auto px-12 py-4">
     <Nav />
 
-    <div v-if="metaTables && mainTags" v-for="t in metaTables">
+    <div
+      v-if="
+        metaTables.length &&
+        mainTags.length &&
+        subTags.length &&
+        documents.length
+      "
+      v-for="t in metaTables"
+    >
       <Card
         v-if="t.tag_id === getMainTagId(mainTags, route)"
         :metaTable="t"
@@ -19,11 +27,11 @@ import { storeToRefs } from "pinia";
 import { getMainTagId } from "~~/composables/getMainTagId";
 const metaTablesStore = useMetaTablesStore();
 const tagStore = useTagStore();
-const documentStore = useDocumentStore();
+const documentsStore = useDocumentStore();
 
 const { metaTables } = storeToRefs(metaTablesStore);
 const { mainTags, subTags } = storeToRefs(tagStore);
-const { documents } = storeToRefs(documentStore);
+const { documents } = storeToRefs(documentsStore);
 
 const route = useRouter().currentRoute.value.path;
 
