@@ -1,24 +1,9 @@
 <template>
-  <div>
-    <Table v-if="dataTable" :dataTable="dataTable[0]"></Table>
-  </div>
+  <div></div>
 </template>
 
 <script setup lang="ts">
-import { DataTable } from "~~/types";
-
-const { id } = useRoute().params;
-const { data: dataTable } = await useFetch<DataTable[]>(
-  `http://localhost:3001/tables/?id=${id}`
-);
-
-if (!dataTable.value) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: "Page not found",
-    fatal: true,
-  });
-}
+definePageMeta({ layout: "docid" });
 </script>
 
 <style scoped></style>

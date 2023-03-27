@@ -1,24 +1,9 @@
 <template>
-  <h2>Dark Fantasy</h2>
-  <div v-if="dataTable" v-for="t in dataTable">
-    <Card v-if="t.subtag === 'dark'" :dataTable="t" />
-  </div>
+  <div></div>
 </template>
 
 <script setup lang="ts">
-import { DataTable } from "~~/types";
-
-const { data: dataTable } = await useFetch<DataTable[]>(
-  "http://localhost:3001/tables"
-);
-
-if (!dataTable.value) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: "Page not found",
-    fatal: true,
-  });
-}
+definePageMeta({ layout: "subindex" });
 </script>
 
 <style scoped></style>

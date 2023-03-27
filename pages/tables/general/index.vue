@@ -1,35 +1,9 @@
 <template>
-  <h2>High Fantasy</h2>
-  <div v-if="metaTables" v-for="t in metaTables">
-    <Card
-      v-if="t.tag_id === getMainTagId"
-      :metaTable="t"
-      :subTag="subTags.find((s) => s.id === t.subtag_id)"
-      :mainTag="mainTags.find((m) => m.id === t.tag_id)"
-      :document="documents.find((d) => d.id === t.doc_id)"
-    />
-    <p>{{ getSubTagId }}</p>
-  </div>
+  <div></div>
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-
-const metaTablesStore = useMetaTablesStore();
-const tagStore = useTagStore();
-const documentStore = useDocumentStore();
-
-const { metaTables } = storeToRefs(metaTablesStore);
-const { mainTags, subTags, getSubTagId, getMainTagId } = storeToRefs(tagStore);
-const { documents } = storeToRefs(documentStore);
-
-if (!metaTables || !subTags || !mainTags || !documents) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: "Page not found",
-    fatal: true,
-  });
-}
+definePageMeta({ layout: "mainindex" });
 </script>
 
 <style scoped></style>

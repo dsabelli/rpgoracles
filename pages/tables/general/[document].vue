@@ -1,24 +1,9 @@
 <template>
-  <div>
-    <Card v-if="dataTable" :dataTable="dataTable[0]"></Card>
-  </div>
+  <div></div>
 </template>
 
 <script setup lang="ts">
-import { DataTable, Subtag } from "~~/types";
-
-const { document } = useRoute().params;
-const { data: dataTable } = await useFetch<DataTable[]>(
-  `http://localhost:3001/tables/?document=${document}`
-);
-
-if (!dataTable.value) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: "Page not found",
-    fatal: true,
-  });
-}
+definePageMeta({ layout: "doc" });
 </script>
 
 <style scoped></style>
