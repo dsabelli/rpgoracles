@@ -32,9 +32,9 @@ import { PropType } from "vue";
 
 const { metaTable, subTag, mainTag, document } = defineProps({
   metaTable: { type: Object as PropType<meta_tables>, required: true },
-  subTag: { type: Object as PropType<sub_tags>, required: false },
-  mainTag: { type: Object as PropType<main_tags>, required: false },
-  document: { type: Object as PropType<doc_types>, required: false },
+  subTag: { type: Object as PropType<sub_tags | null>, required: true },
+  mainTag: { type: Object as PropType<main_tags>, required: true },
+  document: { type: Object as PropType<doc_types>, required: true },
 });
 
 if (!metaTable) {
@@ -50,8 +50,8 @@ if (!metaTable) {
 let path = ref("");
 
 path.value = subTag
-  ? `/tables/${mainTag?.tag_path}/${subTag?.tag_path}/${document?.doc_path}-${metaTable.id}`
-  : `/tables/${mainTag?.tag_path}/${document?.doc_path}-${metaTable.id}`;
+  ? `/tables/${mainTag.tag_path}/${subTag.tag_path}/${document.doc_path}-${metaTable.id}`
+  : `/tables/${mainTag.tag_path}/${document.doc_path}-${metaTable.id}`;
 // const getPath = (): string =>
 //   route.params.document
 //     ? `${route.fullPath}-${metaTable.id}`
