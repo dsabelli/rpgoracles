@@ -1,34 +1,9 @@
 <template>
-  <h2>Fantasy</h2>
-  <div v-if="metaTables && mainTags" v-for="t in metaTables">
-    <Card
-      v-if="t.tag_id === getMainTagId(mainTags, useRoute().path)"
-      :metaTable="t"
-      :mainTag="mainTags.find((m) => m.id === t.tag_id)"
-      :subTag="subTags.find((s) => s.id === t.subtag_id)"
-      :document="documents.find((d) => d.id === t.doc_id)"
-    />
-  </div>
+  <div></div>
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-import { getMainTagId } from "~~/composables/getMainTagId";
-const metaTablesStore = useMetaTablesStore();
-const tagStore = useTagStore();
-const documentStore = useDocumentStore();
-
-const { metaTables } = storeToRefs(metaTablesStore);
-const { mainTags, subTags } = storeToRefs(tagStore);
-const { documents } = storeToRefs(documentStore);
-
-if (!metaTables || !mainTags || !subTags || !documents) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: "Page not found",
-    fatal: true,
-  });
-}
+definePageMeta({ layout: "mainindex" });
 </script>
 
 <style scoped></style>
