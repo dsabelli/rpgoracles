@@ -14,7 +14,7 @@
     "@nuxtjs/tailwindcss": "^6.4.1",
     "daisyui": "^2.51.3",
     "nuxt": "^3.2.3",
-    "prisma": "^4.11.0",
+    "prisma": "^4.12.0",
     "vitest": "^0.29.2"
   },
   "overrides": {
@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.7",
-    "@prisma/client": "^4.11.0",
+    "@prisma/client": "^4.12.0",
     "dotenv": "^16.0.3",
     "pinia": "^2.0.33"
   }

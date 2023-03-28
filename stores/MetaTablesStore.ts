@@ -8,7 +8,7 @@ export const useMetaTablesStore = defineStore("metaTables", {
   actions: {
     async getMetaTables() {
       this.tablesLoading = true;
-      const data = await $fetch("/api/metaTables");
+      const data = await $fetch("/api/meta-tables");
       this.metaTables = data;
       this.tablesLoading = false;
     },

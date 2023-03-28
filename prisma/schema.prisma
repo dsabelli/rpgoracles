@@ -11,11 +11,11 @@ model doc_types {
   id          Int           @id @default(autoincrement())
   doc_name    String        @db.VarChar
   doc_path    String        @unique @db.VarChar
-  tag_id      Int?
+  tag_id      Int
   subtag_id   Int?
   user_id     Int?
   sub_tags    sub_tags?     @relation(fields: [subtag_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  main_tags   main_tags?    @relation(fields: [tag_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  main_tags   main_tags     @relation(fields: [tag_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   users       users?        @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   meta_tables meta_tables[]
 }

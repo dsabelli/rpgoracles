@@ -26,7 +26,7 @@ const { dataTable } = defineProps({
   dataTable: { type: Object as PropType<meta_tables>, required: false },
 });
 const getTableEntries = async () => {
-  return await $fetch("/api/tableEntries");
+  return await $fetch("/api/table-entries");
 };
 const tableEntries = (await getTableEntries()).filter(
   (t) => t.table_id === dataTable?.id

@@ -7,7 +7,7 @@
         {{ mainTags.find((m) => route.includes(m.tag_path))?.tag_name }}</Title
       ></Head
     >
-    {{ data }}
+    {{ data.documents[0].doc_types }}
     <h1 v-if="mainTags.length">{{ title }}</h1>
     <div
       v-if="
@@ -49,7 +49,7 @@ watchEffect(() => {
   }`;
 });
 
-const data = await $fetch("/api/documents");
+const data = await $fetch("/api/main-tags/fdocs");
 
 if (!metaTables || !subTags || !mainTags || !documents) {
   throw createError({

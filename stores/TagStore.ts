@@ -10,13 +10,13 @@ export const useTagStore = defineStore("tags", {
   actions: {
     async getMainTags() {
       this.tagsLoading = true;
-      const data = await $fetch("/api/mainTags");
+      const data = await $fetch("/api/main-tags");
       this.mainTags = data;
       this.tagsLoading = false;
     },
     async getSubTags() {
       this.tagsLoading = true;
-      const data = await $fetch("/api/subTags");
+      const data = await $fetch("/api/sub-tags");
       this.subTags = data;
       this.tagsLoading = false;
     },
