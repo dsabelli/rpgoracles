@@ -3,7 +3,7 @@
     <div class="flex-none">
       <NuxtLink to="/">RPG Oracles</NuxtLink>
     </div>
-    <div class="w-full flex justify-center z-10">
+    <div class="w-full flex justify-center z-20">
       <ul
         v-if="mainTags"
         class="menu menu-horizontal bg-base-100 rounded-box p-2"
@@ -14,7 +14,7 @@
               {{ mainTag.tag_name }}</NuxtLink
             ></span
           >
-          <ul class="menu bg-base-100" v-if="subTags">
+          <ul class="menu bg-base-100 z-20" v-if="subTags">
             <li tabindex="0" v-for="subTag in subTags">
               <span :class="subTag.tag_id === mainTag.id ? '' : 'hidden'"
                 ><NuxtLink
