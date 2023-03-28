@@ -8,8 +8,8 @@ export const useDocumentStore = defineStore("documents", {
   actions: {
     async getDocuments() {
       this.docsLoading = true;
-      const { documents } = await $fetch("/api/documents");
-      this.documents = documents;
+      const data = await $fetch("/api/documents");
+      this.documents = data;
       this.docsLoading = false;
     },
   },
