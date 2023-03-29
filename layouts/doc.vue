@@ -24,18 +24,18 @@
 </template>
 
 <script setup lang="ts">
-const route = useRouter().currentRoute.value.path;
-const docSlug = route.split("/").pop();
-const subSlug = route.split("/").slice(-2).reverse().pop();
-const mainSlug = route.split("/").slice(-3).reverse().pop();
+const params = useRoute().params;
+const { main } = params;
+const { sub } = params;
+const { document } = params;
 
-const { data: documents } = await useFetch(`/api/documents/${docSlug}`);
+const { data: documents } = await useFetch(`/api/documents/${document}`);
 
-const { data: mainTags } = await useFetch(`/api/main-tags/${mainSlug}`);
+const { data: mainTags } = await useFetch(`/api/main-tags/${main}`);
 
-const { data: subTags } = await useFetch(`/api/sub-tags/${subSlug}`);
+const { data: subTags } = await useFetch(`/api/sub-tags/${sub}`);
 
-const { data: metaTables } = await useFetch(`/api/meta-tables/${docSlug}`);
+const { data: metaTables } = await useFetch(`/api/meta-tables/${document}`);
 
 if (!metaTables || !mainTags || !subTags || !documents) {
   throw createError({

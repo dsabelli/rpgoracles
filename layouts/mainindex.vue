@@ -19,15 +19,12 @@
 </template>
 
 <script setup lang="ts">
-const route = useRouter().currentRoute.value.path;
-const slug = route.split("/").pop();
+const params = useRoute().params;
+const { main } = params;
 
-const { main } = useRoute().params;
-console.log(main);
+const { data: mainTags } = await useFetch(`/api/main-tags/${main}`);
 
-const { data: mainTags } = await useFetch(`/api/main-tags/${slug}`);
-
-const { data: metaTables } = await useFetch(`/api/meta-tables/${slug}`);
+const { data: metaTables } = await useFetch(`/api/meta-tables/${main}`);
 
 if (!metaTables || !mainTags) {
   throw createError({

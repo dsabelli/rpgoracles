@@ -23,15 +23,15 @@
 </template>
 
 <script setup lang="ts">
-const route = useRouter().currentRoute.value.path;
-const subSlug = route.split("/").pop();
-const mainSlug = route.split("/").slice(-2).reverse().pop();
+const params = useRoute().params;
+const { main } = params;
+const { sub } = params;
 
-const { data: mainTags } = await useFetch(`/api/main-tags/${mainSlug}`);
+const { data: mainTags } = await useFetch(`/api/main-tags/${main}`);
 
-const { data: subTags } = await useFetch(`/api/sub-tags/${subSlug}`);
+const { data: subTags } = await useFetch(`/api/sub-tags/${sub}`);
 
-const { data: metaTables } = await useFetch(`/api/meta-tables/${subSlug}`);
+const { data: metaTables } = await useFetch(`/api/meta-tables/${sub}`);
 
 if (!metaTables || !mainTags || !subTags) {
   throw createError({
