@@ -1,7 +1,9 @@
 <template>
-  <div></div>
+  <div><NuxtLayout name="docid"></NuxtLayout></div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+definePageMeta({ layout: false });
+</script>
 
 <style scoped></style>

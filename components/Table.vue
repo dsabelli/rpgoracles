@@ -1,7 +1,6 @@
-<template v-if="dataTable">
+<template v-if="metaTable">
   <div class="overflow-x-auto">
-    {{ dataTable?.meta_name }}
-    <table class="table table-compact table-zebra w-full z-0" v-if="dataTable">
+    <table class="table table-compact table-zebra w-full z-0" v-if="metaTable">
       <!-- head -->
       <thead>
         <tr>
@@ -20,17 +19,12 @@
 </template>
 
 <script setup lang="ts">
-import { meta_tables } from ".prisma/client";
+import { meta_tables, table_entries } from ".prisma/client";
 
-const { dataTable } = defineProps({
-  dataTable: { type: Object as PropType<meta_tables>, required: false },
+const { metaTable, tableEntries } = defineProps({
+  metaTable: { type: Object as PropType<meta_tables>, required: true },
+  tableEntries: { type: Object as PropType<table_entries[]>, required: true },
 });
-const getTableEntries = async () => {
-  return await $fetch("/api/table-entries");
-};
-const tableEntries = (await getTableEntries()).filter(
-  (t) => t.table_id === dataTable?.id
-);
 </script>
 
 <style scoped></style>

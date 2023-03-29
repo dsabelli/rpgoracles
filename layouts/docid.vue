@@ -1,27 +1,26 @@
 <template>
   <div class="max-w-screen-lg mx-auto px-12 py-4">
     <Nav />
-    <div v-if="getMetaTable(metaTables, id)">
-      <Table :dataTable="getMetaTable(metaTables, id)" />
+    <Head v-if="metaTables"
+      ><Title>RPG Oracles | {{ metaTables[0].meta_name }}</Title></Head
+    >
+
+    <h1 v-if="metaTables">{{ metaTables[0].meta_name }}</h1>
+    <div v-if="metaTables && tableEntries">
+      <Table :metaTable="metaTables[0]" :tableEntries="tableEntries" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { meta_tables } from ".prisma/client";
-import { storeToRefs } from "pinia";
+const params = useRoute().params;
+const { id } = params;
 
-const metaTablesStore = useMetaTablesStore();
+const { data: metaTables } = await useFetch(`/api/meta-tables/${id}`);
 
-const { metaTables } = storeToRefs(metaTablesStore);
+const { data: tableEntries } = await useFetch(`/api/table-entries/${id}`);
 
-const id = +useRouter().currentRoute.value.params.id;
-
-const getMetaTable = (metaTables: meta_tables[], id: number) => {
-  return metaTables.find((m) => m.id === id);
-};
-
-if (!metaTables) {
+if (!metaTables || !tableEntries) {
   throw createError({
     statusCode: 404,
     statusMessage: "Page not found",
