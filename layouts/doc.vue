@@ -1,47 +1,43 @@
 <template>
   <div class="max-w-screen-lg mx-auto px-12 py-4">
     <Nav />
-    <Head v-if="mainTags.length && subTags.length && documents.length"
-      ><Title>RPG Oracles | {{ title }}</Title></Head
+    <Head v-if="mainTags && subTags && documents"
+      ><Title
+        >RPG Oracles |{{ subTags.tag_name }} {{ mainTags.tag_name }}
+        {{ documents.doc_name }}</Title
+      ></Head
     >
-    <h1 v-if="mainTags.length && subTags.length && documents.length">
-      {{ title }}
+
+    <h1 v-if="mainTags && subTags && documents">
+      {{ subTags.tag_name }} {{ mainTags.tag_name }} {{ documents.doc_name }}
     </h1>
-    <div v-for="t in metaTables">
+
+    <div v-if="metaTables" v-for="t in metaTables">
       <Card
-        v-if="documents.length && t.doc_id === getDocId(documents, document)"
         :metaTable="t"
-        :subTag="subTags.find((s) => s.id === t.subtag_id)"
-        :mainTag="mainTags.find((m) => m.id === t.tag_id)"
-        :document="documents.find((d) => d.id === t.doc_id)"
+        :subTag="t.sub_tags"
+        :mainTag="t.main_tags"
+        :document="t.doc_types"
       />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-
-const metaTablesStore = useMetaTablesStore();
-const tagStore = useTagStore();
-const documentsStore = useDocumentStore();
-
-const { metaTables } = storeToRefs(metaTablesStore);
-const { mainTags, subTags } = storeToRefs(tagStore);
-const { documents } = storeToRefs(documentsStore);
-
-const { document } = useRouter().currentRoute.value.params;
 const route = useRouter().currentRoute.value.path;
-const title = ref("");
+const docSlug = route.split("/").pop();
+const subSlug = route.split("/").slice(-2).reverse().pop();
+const mainSlug = route.split("/").slice(-3).reverse().pop();
 
-watchEffect(() => {
-  title.value = `${
-    subTags.value.find((s) => route.includes(s.tag_path))?.tag_name
-  }  ${mainTags.value.find((m) => route.includes(m.tag_path))?.tag_name} ${
-    documents.value.find((d) => d.doc_path === document)?.doc_name
-  }`;
-});
-if (!metaTables || !subTags || !mainTags || !documents) {
+const { data: documents } = await useFetch(`/api/documents/${docSlug}`);
+
+const { data: mainTags } = await useFetch(`/api/main-tags/${mainSlug}`);
+
+const { data: subTags } = await useFetch(`/api/sub-tags/${subSlug}`);
+
+const { data: metaTables } = await useFetch(`/api/meta-tables/${docSlug}`);
+
+if (!metaTables || !mainTags || !subTags || !documents) {
   throw createError({
     statusCode: 404,
     statusMessage: "Page not found",

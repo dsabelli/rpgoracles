@@ -1,11 +1,15 @@
 <template>
   <div class="max-w-screen-lg mx-auto px-12 py-4">
     <Nav />
-    <Head v-if="mainTags"
-      ><Title>RPG Oracles | {{ mainTags.tag_name }}</Title></Head
+    <Head v-if="mainTags && subTags"
+      ><Title
+        >RPG Oracles |{{ subTags.tag_name }} {{ mainTags.tag_name }}</Title
+      ></Head
     >
 
-    <h1 v-if="mainTags">{{ mainTags.tag_name }}</h1>
+    <h1 v-if="mainTags && subTags">
+      {{ subTags.tag_name }} {{ mainTags.tag_name }}
+    </h1>
 
     <div v-if="metaTables" v-for="t in metaTables">
       <Card
@@ -20,13 +24,16 @@
 
 <script setup lang="ts">
 const route = useRouter().currentRoute.value.path;
-const slug = route.split("/").pop();
+const subSlug = route.split("/").pop();
+const mainSlug = route.split("/").slice(-2).reverse().pop();
 
-const { data: mainTags } = await useFetch(`/api/main-tags/${slug}`);
+const { data: mainTags } = await useFetch(`/api/main-tags/${mainSlug}`);
 
-const { data: metaTables } = await useFetch(`/api/meta-tables/${slug}`);
+const { data: subTags } = await useFetch(`/api/sub-tags/${subSlug}`);
 
-if (!metaTables || !mainTags) {
+const { data: metaTables } = await useFetch(`/api/meta-tables/${subSlug}`);
+
+if (!metaTables || !mainTags || !subTags) {
   throw createError({
     statusCode: 404,
     statusMessage: "Page not found",
