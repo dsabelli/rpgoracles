@@ -26,7 +26,7 @@ const { data: mainTags } = await useFetch(`/api/main-tags/${main}`);
 
 const { data: metaTables } = await useFetch(`/api/meta-tables/${main}`);
 
-if (!metaTables || !mainTags) {
+if (!metaTables.value || !mainTags.value) {
   throw createError({
     statusCode: 404,
     statusMessage: "Page not found",

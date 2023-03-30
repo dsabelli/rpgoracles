@@ -20,7 +20,7 @@ const { data: metaTables } = await useFetch(`/api/meta-tables/${id}`);
 
 const { data: tableEntries } = await useFetch(`/api/table-entries/${id}`);
 
-if (!metaTables || !tableEntries) {
+if (!metaTables.value || !tableEntries.value) {
   throw createError({
     statusCode: 404,
     statusMessage: "Page not found",

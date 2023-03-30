@@ -1,8 +1,11 @@
 import prisma from "~~/prisma/client";
 
 export default defineEventHandler(async (e) => {
-  const tables = await prisma.meta_tables.findMany({
-    where: { user_id: null },
-  });
-  return tables;
+  try {
+    return await prisma.meta_tables.findMany({
+      where: { user_id: null },
+    });
+  } catch (error: any) {
+    throw createError({ message: error.message });
+  }
 });

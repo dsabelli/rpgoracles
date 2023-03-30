@@ -37,7 +37,7 @@ const { data: subTags } = await useFetch(`/api/sub-tags/${sub}`);
 
 const { data: metaTables } = await useFetch(`/api/meta-tables/${document}`);
 
-if (!metaTables || !mainTags || !documents) {
+if (!metaTables.value || !mainTags.value || !documents.value) {
   throw createError({
     statusCode: 404,
     statusMessage: "Page not found",

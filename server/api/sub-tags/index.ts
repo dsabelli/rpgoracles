@@ -1,6 +1,9 @@
 import prisma from "~~/prisma/client";
 
 export default defineEventHandler(async (e) => {
-  const tags = await prisma.sub_tags.findMany({ where: { user_id: null } });
-  return tags;
+  try {
+    return await prisma.sub_tags.findMany({ where: { user_id: null } });
+  } catch (error: any) {
+    throw createError({ message: error.message });
+  }
 });

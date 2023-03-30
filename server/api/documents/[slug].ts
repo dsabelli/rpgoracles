@@ -1,9 +1,13 @@
 import prisma from "~~/prisma/client";
 
 export default defineEventHandler(async (e) => {
-  return await prisma.doc_types.findUnique({
-    where: { doc_path: e.context.params?.slug },
-  });
+  try {
+    return await prisma.doc_types.findUnique({
+      where: { doc_path: e.context.params?.slug },
+    });
+  } catch (error: any) {
+    throw createError({ message: error.message });
+  }
 });
 // import prisma from "~~/prisma/client";
 
