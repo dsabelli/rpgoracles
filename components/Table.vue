@@ -1,7 +1,7 @@
 <template v-if="metaTable">
   <div class="overflow-x-auto">
+    <Modal :tableEntries="tableEntries" />
     <table class="table table-compact table-zebra w-full z-0" v-if="metaTable">
-      <!-- head -->
       <thead>
         <tr>
           <th>{{ `d${tableEntries.length}` }}</th>
