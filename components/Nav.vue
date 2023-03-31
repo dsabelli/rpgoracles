@@ -8,50 +8,60 @@
         v-if="mainTags"
         class="menu menu-horizontal bg-base-100 rounded-box p-2"
       >
-        <li tabindex="0" v-for="mainTag in mainTags">
-          <span
-            ><NuxtLink :to="`/tables/${mainTag.tag_path}`">
+        <template v-for="mainTag in mainTags">
+          <li tabindex="0">
+            <NuxtLink :to="`/tables/${mainTag.tag_path}`">
               {{ mainTag.tag_name }}</NuxtLink
-            ></span
-          >
-          <ul class="menu bg-base-100 z-20" v-if="subTags">
-            <li tabindex="0" v-for="subTag in subTags">
-              <span :class="subTag.tag_id === mainTag.id ? '' : 'hidden'"
-                ><NuxtLink
-                  v-if="subTag.tag_id === mainTag.id"
-                  :to="`/tables/${mainTag.tag_path}/${subTag.tag_path}`"
-                  >{{ subTag.tag_name }}</NuxtLink
-                ></span
-              >
-              <ul class="bg-base-100 z-20" v-if="documents">
-                <li tabindex="0" v-for="document in documents">
-                  <span
-                    :class="document.subtag_id === subTag.id ? '' : 'hidden'"
-                    ><NuxtLink
-                      v-if="
-                        document.subtag_id === subTag.id &&
-                        subTag.tag_id === mainTag.id
-                      "
-                      :to="`/tables/${mainTag.tag_path}/${subTag.tag_path}/${document.doc_path}`"
-                      >{{ document.doc_name }}</NuxtLink
-                    ></span
+            >
+            <ul class="menu bg-base-100 z-20" v-if="subTags">
+              <template v-for="subTag in subTags">
+                <li
+                  tabindex="0"
+                  :class="subTag.tag_id === mainTag.id ? '' : 'hidden'"
+                >
+                  <NuxtLink
+                    v-if="subTag.tag_id === mainTag.id"
+                    :to="`/tables/${mainTag.tag_path}/${subTag.tag_path}`"
+                    >{{ subTag.tag_name }}</NuxtLink
+                  >
+                  <ul class="bg-base-100 z-20" v-if="documents">
+                    <template v-for="document in documents">
+                      <li
+                        tabindex="0"
+                        :class="
+                          document.subtag_id === subTag.id ? '' : 'hidden'
+                        "
+                      >
+                        <NuxtLink
+                          v-if="
+                            document.subtag_id === subTag.id &&
+                            subTag.tag_id === mainTag.id
+                          "
+                          :to="`/tables/${mainTag.tag_path}/${subTag.tag_path}/${document.doc_path}`"
+                          >{{ document.doc_name }}</NuxtLink
+                        >
+                      </li>
+                    </template>
+                  </ul>
+                </li>
+              </template>
+            </ul>
+            <ul class="menu bg-base-100" v-if="documents">
+              <template v-for="document in documents">
+                <li
+                  tabindex="0"
+                  :class="document.tag_id === mainTag.id ? '' : 'hidden'"
+                >
+                  <NuxtLink
+                    v-if="document.tag_id === mainTag.id"
+                    :to="`/tables/${mainTag.tag_path}/${document.doc_path}`"
+                    >{{ document.doc_name }}</NuxtLink
                   >
                 </li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="menu bg-base-100" v-if="documents">
-            <li tabindex="0" v-for="document in documents">
-              <span :class="document.tag_id === mainTag.id ? '' : 'hidden'"
-                ><NuxtLink
-                  v-if="document.tag_id === mainTag.id"
-                  :to="`/tables/${mainTag.tag_path}/${document.doc_path}`"
-                  >{{ document.doc_name }}</NuxtLink
-                ></span
-              >
-            </li>
-          </ul>
-        </li>
+              </template>
+            </ul>
+          </li>
+        </template>
       </ul>
     </div>
   </div>
