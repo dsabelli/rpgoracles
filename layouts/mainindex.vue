@@ -8,14 +8,14 @@
     <h1 v-if="mainTags">{{ mainTags.tag_name }}</h1>
 
     <CardGrid>
-      <div v-frag v-if="metaTables" v-for="t in metaTables">
+      <template v-if="metaTables" v-for="t in metaTables">
         <Card
           :metaTable="t"
           :subTag="t.sub_tags"
           :mainTag="t.main_tags"
           :document="t.doc_types"
         />
-      </div>
+      </template>
     </CardGrid>
   </ContainerMain>
 </template>
