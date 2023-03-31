@@ -1,18 +1,20 @@
 <template>
-  <div class="card w-72 bg-base-100 shadow-xl">
-    <figure class="px-10 pt-10">
-      <img :src="metaTable.meta_image" alt="Shoes" class="rounded-xl w-48" />
-    </figure>
-    <div class="card-body items-center text-center">
-      <h2 class="card-title">{{ metaTable.meta_name }}</h2>
-      <p>{{ metaTable.meta_desc }}</p>
-      <div class="card-actions">
-        <NuxtLink :to="path"
-          ><button class="btn btn-primary">Read More</button></NuxtLink
-        >
+  <li class="list-none">
+    <div class="card w-72 bg-base-100 shadow-xl">
+      <figure class="px-10 pt-10">
+        <img :src="metaTable.meta_image" alt="Shoes" class="rounded-xl w-48" />
+      </figure>
+      <div class="card-body items-center text-center">
+        <h2 class="card-title">{{ metaTable.meta_name }}</h2>
+        <p>{{ metaTable.meta_desc }}</p>
+        <div class="card-actions">
+          <NuxtLink :to="path"
+            ><button class="btn btn-primary">Read More</button></NuxtLink
+          >
+        </div>
       </div>
     </div>
-  </div>
+  </li>
 </template>
 
 <script setup lang="ts">
