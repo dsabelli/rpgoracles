@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-screen-lg mx-auto px-12 py-4">
+  <ContainerMain>
     <Nav />
     <Head v-if="metaTables"
       ><Title>RPG Oracles | {{ metaTables[0].meta_name }}</Title></Head
@@ -9,7 +9,7 @@
     <div v-if="metaTables && tableEntries">
       <Table :metaTable="metaTables[0]" :tableEntries="tableEntries" />
     </div>
-  </div>
+  </ContainerMain>
 </template>
 
 <script setup lang="ts">

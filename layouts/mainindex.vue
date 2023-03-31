@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-screen-lg mx-auto px-12 py-4">
+  <ContainerMain>
     <Nav />
     <Head v-if="mainTags"
       ><Title>RPG Oracles | {{ mainTags.tag_name }}</Title></Head
@@ -15,7 +15,7 @@
         :document="t.doc_types"
       />
     </div>
-  </div>
+  </ContainerMain>
 </template>
 
 <script setup lang="ts">

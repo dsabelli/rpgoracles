@@ -1,8 +1,7 @@
 <template>
-  <ContainerMain>
-    <Nav />
+  <div class="max-w-screen-lg mx-auto px-12 py-4">
     <slot />
-  </ContainerMain>
+  </div>
 </template>
 
 <script setup lang="ts"></script>
