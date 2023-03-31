@@ -7,13 +7,15 @@
 
     <h1 v-if="mainTags">{{ mainTags.tag_name }}</h1>
 
-    <CardGrid v-if="metaTables" v-for="t in metaTables">
-      <Card
-        :metaTable="t"
-        :subTag="t.sub_tags"
-        :mainTag="t.main_tags"
-        :document="t.doc_types"
-      />
+    <CardGrid>
+      <div v-frag v-if="metaTables" v-for="t in metaTables">
+        <Card
+          :metaTable="t"
+          :subTag="t.sub_tags"
+          :mainTag="t.main_tags"
+          :document="t.doc_types"
+        />
+      </div>
     </CardGrid>
   </ContainerMain>
 </template>
