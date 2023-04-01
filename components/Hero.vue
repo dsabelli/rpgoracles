@@ -2,7 +2,7 @@
   <div class="hero h-3/4 bg-base-200">
     <div class="hero-content flex-col md:flex-row-reverse">
       <img
-        src="../assets/static/stock.jpg"
+        src="~/assets/static/stock.jpg"
         class="max-w-sm rounded-lg shadow-2xl"
       />
       <div>
