@@ -5,7 +5,7 @@
       ><Title>RPG Oracles | {{ metaTables[0].meta_name }}</Title></Head
     >
 
-    <h1 v-if="metaTables">{{ metaTables[0].meta_name }}</h1>
+    <H1 v-if="metaTables">{{ metaTables[0].meta_name }}</H1>
     <div v-if="metaTables && tableEntries">
       <Table :metaTable="metaTables[0]" :tableEntries="tableEntries" />
     </div>

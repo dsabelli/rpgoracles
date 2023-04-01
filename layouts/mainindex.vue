@@ -5,7 +5,7 @@
       ><Title>RPG Oracles | {{ mainTags.tag_name }}</Title></Head
     >
 
-    <h1 v-if="mainTags">{{ mainTags.tag_name }}</h1>
+    <H1 v-if="mainTags">{{ mainTags.tag_name }}</H1>
 
     <CardGrid>
       <template v-if="metaTables" v-for="t in metaTables">

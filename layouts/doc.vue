@@ -8,9 +8,9 @@
       ></Head
     >
 
-    <h1 v-if="mainTags && documents">
+    <H1 v-if="mainTags && documents">
       {{ subTags?.tag_name }} {{ mainTags.tag_name }} {{ documents.doc_name }}
-    </h1>
+    </H1>
 
     <CardGrid>
       <template v-if="metaTables" v-for="t in metaTables">
