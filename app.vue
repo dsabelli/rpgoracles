@@ -15,4 +15,8 @@ tagStore.getSubTags();
 documentsStore.getDocuments();
 </script>
 
-<style scoped></style>
+<style>
+#__nuxt {
+  min-height: 100vh;
+}
+</style>

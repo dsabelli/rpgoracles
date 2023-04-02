@@ -1,5 +1,5 @@
 <template>
-  <ul class="flex gap-4 flex-wrap">
+  <ul class="flex gap-4 flex-wrap px-12">
     <slot />
   </ul>
 </template>

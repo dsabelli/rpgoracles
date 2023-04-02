@@ -1,6 +1,5 @@
 <template>
   <ContainerMain>
-    <Nav />
     <Head v-if="metaTables"
       ><Title>RPG Oracles | {{ metaTables[0].meta_name }}</Title></Head
     >

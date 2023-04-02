@@ -1,6 +1,5 @@
 <template>
   <ContainerMain>
-    <Nav />
     <slot />
   </ContainerMain>
 </template>

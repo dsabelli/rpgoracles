@@ -1,6 +1,5 @@
 <template>
   <ContainerMain>
-    <Nav />
     <Head v-if="mainTags && documents"
       ><Title
         >RPG Oracles |{{ subTags?.tag_name }} {{ mainTags.tag_name }}
