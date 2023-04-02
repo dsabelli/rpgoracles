@@ -1,8 +1,5 @@
 <template>
-  <div class="min-h-screen">
-    <Hero />
-    <div class="h-1/4">test</div>
-  </div>
+  <Hero />
 </template>
 
 <script setup lang="ts"></script>

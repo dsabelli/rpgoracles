@@ -1,5 +1,5 @@
 <template>
-  <div><NuxtLayout name="subindex"></NuxtLayout></div>
+  <NuxtLayout name="subindex"></NuxtLayout>
 </template>
 
 <script setup lang="ts">

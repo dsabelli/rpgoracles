@@ -1,8 +1,4 @@
-<template>
-  <div>
-    <h1>tables index</h1>
-  </div>
-</template>
+<template></template>
 
 <script setup lang="ts">
 await navigateTo("/");

@@ -1,5 +1,5 @@
 <template>
-  <div><NuxtLayout name="docid"></NuxtLayout></div>
+  <NuxtLayout name="docid"></NuxtLayout>
 </template>
 
 <script setup lang="ts">
