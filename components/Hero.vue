@@ -1,10 +1,6 @@
 <template>
   <div class="hero h-3/4 bg-base-200">
-    <div class="hero-content flex-col md:flex-row-reverse">
-      <img
-        src="~/assets/static/stock.jpg"
-        class="max-w-sm rounded-lg shadow-2xl"
-      />
+    <div class="flex hero-content flex-col lg:flex-row">
       <div>
         <h1 class="text-5xl font-bold">Box Office News!</h1>
         <p class="py-6">
@@ -13,6 +9,10 @@
           id nisi.
         </p>
       </div>
+      <img
+        src="~/assets/static/stock.jpg"
+        class="max-w-sm rounded-lg shadow-2xl"
+      />
     </div>
   </div>
 </template>

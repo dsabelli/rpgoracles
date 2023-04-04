@@ -1,5 +1,5 @@
 <template>
-  <ul v-if="mainTags" class="bg-base-100 rounded-box p-2 w-52 md:hidden">
+  <ul v-if="mainTags" class="bg-base-100 rounded-box p-2 w-52 lg:hidden">
     <template v-for="mainTag in mainTags">
       <li class="p-2" tabindex="0">
         <div class="w-full flex justify-between">

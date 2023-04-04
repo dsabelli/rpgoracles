@@ -1,5 +1,7 @@
 <template>
-  <ul class="flex gap-4 flex-wrap px-12">
+  <ul
+    class="flex flex-col items-center sm:flex-row sm:flex-wrap gap-4 sm:gap-8 pr-4"
+  >
     <slot />
   </ul>
 </template>

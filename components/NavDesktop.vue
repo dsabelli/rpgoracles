@@ -1,7 +1,7 @@
 <template>
   <ul
     v-if="mainTags"
-    class="menu menu-horizontal bg-base-100 rounded-box p-2 w-full hidden md:flex"
+    class="menu menu-horizontal bg-base-100 rounded-box p-2 w-full hidden lg:flex"
   >
     <template v-for="mainTag in mainTags">
       <li tabindex="0">
@@ -19,7 +19,7 @@
                 :to="`/tables/${mainTag.tag_path}/${subTag.tag_path}`"
                 >{{ subTag.tag_name }}</NuxtLink
               >
-              <ul class="bg-base-100 z-20" v-if="documents">
+              <ul class="bg-base-100 z-20 pl-0" v-if="documents">
                 <template v-for="document in documents">
                   <li
                     tabindex="0"
