@@ -2,6 +2,7 @@
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
+  <Footer />
 </template>
 
 <script setup lang="ts">
@@ -15,8 +16,4 @@ tagStore.getSubTags();
 documentsStore.getDocuments();
 </script>
 
-<style>
-#__nuxt {
-  min-height: 100vh;
-}
-</style>
+<style></style>
