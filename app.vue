@@ -1,8 +1,8 @@
 <template>
   <NuxtLayout>
     <NuxtPage />
+    <Footer />
   </NuxtLayout>
-  <Footer />
 </template>
 
 <script setup lang="ts">
