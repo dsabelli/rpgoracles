@@ -1,29 +1,30 @@
 <template>
-  <ul v-if="mainTags" class="bg-base-100 rounded-box p-2 w-52 lg:hidden">
+  <ul v-if="mainTags" class="bg-base-100 w-52 lg:hidden">
+    <div class="my-2">
+      <NuxtLink class="flex items-center lg:gap-4" to="/"
+        ><Logo styles="w-12 h-12" />
+        <h2 class="text-lg">RPG&nbsp;Oracles</h2></NuxtLink
+      >
+    </div>
+
     <template v-for="mainTag in mainTags">
-      <li class="p-2" tabindex="0">
-        <div class="w-full flex justify-between">
-          <NuxtLink class="w-full" :to="`/tables/${mainTag.tag_path}`">
-            {{ mainTag.tag_name }}</NuxtLink
-          >
-          <button class="w-1/2 flex justify-end">
-            <img src="~/assets/static/chevron-right.svg" />
-          </button>
-        </div>
-        <ul class="bg-base-100" v-if="subTags">
+      <li
+        class="p-2 pl-0 relative border-t-slate-500 border-t py-4"
+        tabindex="0"
+      >
+        <h3 class="text-slate-500 font-bold">{{ mainTag.tag_name }}</h3>
+        <ul class="menu bg-base-100 pl-1" v-if="subTags">
           <template v-for="subTag in subTags">
             <li
               tabindex="0"
               :class="subTag.tag_id === mainTag.id ? '' : 'hidden'"
             >
-              <div class="w-full flex justify-between">
+              <div class="w-full flex justify-between p-2">
                 <NuxtLink
                   v-if="subTag.tag_id === mainTag.id"
                   :to="`/tables/${mainTag.tag_path}/${subTag.tag_path}`"
                   >{{ subTag.tag_name }}</NuxtLink
-                ><button class="">
-                  <img src="~/assets/static/chevron-right.svg" />
-                </button>
+                ><ChevRight />
               </div>
               <ul class="bg-base-100" v-if="documents">
                 <template v-for="document in documents">
@@ -32,6 +33,7 @@
                     :class="document.subtag_id === subTag.id ? '' : 'hidden'"
                   >
                     <NuxtLink
+                      class="py-2"
                       v-if="
                         document.subtag_id === subTag.id &&
                         subTag.tag_id === mainTag.id
@@ -45,11 +47,18 @@
             </li>
           </template>
         </ul>
-        <ul class="bg-base-100 hidden" v-if="documents">
+
+        <ul class="bg-base-100 menu" v-if="documents">
           <template v-for="document in documents">
             <li
               tabindex="0"
-              :class="document.tag_id === mainTag.id ? '' : 'hidden'"
+              :class="
+                document.subtag_id
+                  ? 'hidden'
+                  : document.tag_id === mainTag.id
+                  ? ''
+                  : 'hidden'
+              "
             >
               <NuxtLink
                 v-if="document.tag_id === mainTag.id"
@@ -67,6 +76,7 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
 import { useTagStore } from "~~/stores/TagStore";
+
 const tagsStore = useTagStore();
 const docsStore = useDocumentStore();
 
