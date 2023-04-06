@@ -3,8 +3,6 @@
     <Head v-if="metaTables"
       ><Title>RPG Oracles | {{ metaTables[0].meta_name }}</Title></Head
     >
-
-    <H1 v-if="metaTables">{{ metaTables[0].meta_name }}</H1>
     <template v-if="metaTables && tableEntries">
       <Table :metaTable="metaTables[0]" :tableEntries="tableEntries" />
     </template>

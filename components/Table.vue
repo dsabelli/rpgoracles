@@ -1,11 +1,21 @@
 <template v-if="metaTable">
-  <div class="overflow-x-auto">
-    <Modal :tableEntries="tableEntries" />
-    <table class="table table-compact table-zebra w-full z-0" v-if="metaTable">
-      <thead>
+  <div class="overflow-x-auto pr-4 lg:pr-12">
+    <div class="flex justify-between items-center">
+      <H1 class="" v-if="metaTable">{{ metaTable.meta_name }}</H1>
+      <Modal
+        class="mb-4"
+        :tableEntries="tableEntries"
+        :name="metaTable.meta_name"
+      />
+    </div>
+    <table
+      v-if="metaTable && tableEntries"
+      class="table table-compact table-zebra w-full z-0"
+    >
+      <thead class="">
         <tr>
-          <th>{{ `d${tableEntries.length}` }}</th>
-          <th>Result</th>
+          <th class="bg-accent">{{ `d${tableEntries.length}` }}</th>
+          <th class="bg-accent">Result</th>
         </tr>
       </thead>
       <tbody>
