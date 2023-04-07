@@ -3,24 +3,43 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        mytheme: {
-          primary: "#e8c988",
+        light: {
+          primary: "#ff6584",
 
-          secondary: "#e8e6e3",
+          secondary: "#a7ea54",
 
-          accent: "#5e92ed",
+          accent: "#3ABFF8",
 
-          neutral: "#312735",
+          neutral: "#191D24",
 
-          "base-100": "#1e2533",
+          "base-100": "#FFF",
 
-          info: "#7EBCDD",
+          info: "#3ABFF8",
 
-          success: "#53EAD6",
+          success: "#36D399",
 
-          warning: "#F48B0B",
+          warning: "#FBBD23",
 
-          error: "#F35356",
+          error: "#F87272",
+        },
+        dark: {
+          primary: "#ff6584",
+
+          secondary: "#D926A9",
+
+          accent: "#3ABFF8",
+
+          neutral: "#191D24",
+
+          "base-100": "#2A303C",
+
+          info: "#3ABFF8",
+
+          success: "#36D399",
+
+          warning: "#FBBD23",
+
+          error: "#F87272",
         },
       },
     ],

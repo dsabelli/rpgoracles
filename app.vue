@@ -11,11 +11,20 @@
 const tagStore = useTagStore();
 const metaTablesStore = useMetaTablesStore();
 const documentsStore = useDocumentStore();
+const settingsStore = useSettingsStore();
 
 metaTablesStore.getMetaTables();
 tagStore.getMainTags();
 tagStore.getSubTags();
 documentsStore.getDocuments();
+
+watchEffect(() => {
+  useHead({
+    htmlAttrs: {
+      "data-theme": settingsStore.getTheme,
+    },
+  });
+});
 </script>
 
 <style></style>
