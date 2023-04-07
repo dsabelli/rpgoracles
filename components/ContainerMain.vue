@@ -19,7 +19,7 @@
         <div class="hidden lg:block">
           <NavDesktop />
         </div>
-        <div class="w-6 sm:w-44"></div>
+        <div class="w-6 sm:w-1"></div>
       </div>
       <!-- Page content here -->
       <slot />

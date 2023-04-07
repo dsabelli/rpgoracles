@@ -1,18 +1,19 @@
 <template>
-  <div class="hero h-3/4 bg-base-200">
+  <div class="hero h-screen max-w-screen-lg bg-base-100">
     <div class="flex hero-content flex-col lg:flex-row">
       <div>
-        <h1 class="text-5xl font-bold">Box Office News!</h1>
+        <H1 class="font-bold">RPG Oracles</H1>
         <p class="py-6">
-          Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-          excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a
-          id nisi.
+          Some random text that isn't lorem so chrome based browsers will stop
+          asking if I want to translate the page from Latin to English!
         </p>
       </div>
-      <img
+      <Icosahedron />
+
+      <!-- <img
         src="~/assets/static/stock.jpg"
-        class="max-w-sm rounded-lg shadow-2xl"
-      />
+        class="max-w-sm w-72 rounded-lg shadow-2xl"
+      /> -->
     </div>
   </div>
 </template>
