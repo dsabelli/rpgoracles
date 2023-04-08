@@ -12,7 +12,12 @@
         class="p-2 pl-0 relative border-t-slate-500 border-t py-4"
         tabindex="0"
       >
-        <h3 class="text-slate-500 font-bold">{{ mainTag.tag_name }}</h3>
+        <NuxtLink :to="`/tables/${mainTag.tag_path}`"
+          ><h3 class="text-slate-500 font-bold">
+            {{ mainTag.tag_name }}
+          </h3></NuxtLink
+        >
+
         <ul class="menu bg-base-100 pl-1" v-if="subTags">
           <template v-for="subTag in subTags">
             <li
