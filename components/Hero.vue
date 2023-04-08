@@ -1,6 +1,6 @@
 <template>
   <div class="hero h-screen max-w-screen-lg bg-base-100">
-    <div class="flex hero-content flex-col lg:flex-row">
+    <div class="flex hero-content flex-col lg:flex-row gap-8">
       <div>
         <H1 class="font-bold">RPG Oracles</H1>
         <p class="py-6">
