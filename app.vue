@@ -1,7 +1,7 @@
 <template>
   <NuxtLayout>
     <NuxtLoadingIndicator
-      color="repeating-linear-gradient(to right,#00dc82 0%,#34cdfe 50%,#0047e1 100%)"
+      color="repeating-linear-gradient(to right,#B10618 0%,#34cdfe 50%,#0047e1 100%)"
     />
     <NuxtPage />
   </NuxtLayout>
@@ -27,4 +27,9 @@ watchEffect(() => {
 });
 </script>
 
-<style></style>
+<style>
+#__nuxt {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--b1) / var(--tw-bg-opacity));
+}
+</style>
