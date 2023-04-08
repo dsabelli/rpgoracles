@@ -19,7 +19,8 @@
         <div class="hidden lg:block">
           <NavDesktop />
         </div>
-        <button class="btn btn-ghost" @click="toggle">Change</button>
+
+        <SwapTheme />
       </div>
       <!-- Page content here -->
       <slot />
@@ -32,10 +33,6 @@
   <Footer />
 </template>
 
-<script setup lang="ts">
-const settingsStore = useSettingsStore();
-
-const toggle = settingsStore.changeTheme;
-</script>
+<script setup lang="ts"></script>
 
 <style scoped></style>
