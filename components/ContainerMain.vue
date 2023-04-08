@@ -19,8 +19,6 @@
         <div class="hidden lg:block">
           <NavDesktop />
         </div>
-
-        <SwapTheme />
       </div>
       <!-- Page content here -->
       <slot />

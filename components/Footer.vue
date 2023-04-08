@@ -1,6 +1,11 @@
 <template>
-  <footer class="w-full text-center mt-4 p-4 bg-base-300 text-base-content">
-    <p>Copyright © {{ new Date().getFullYear() }} rpgoracles.com</p>
+  <footer
+    class="grid grid-cols-8 w-full text-center mt-4 p-4 bg-base-300 text-base-content justify-center"
+  >
+    <SwapTheme class="col-span-1" />
+    <p class="col-span-7 lg:col-span-6">
+      Copyright © {{ new Date().getFullYear() }} rpgoracles.com
+    </p>
   </footer>
 </template>
 
