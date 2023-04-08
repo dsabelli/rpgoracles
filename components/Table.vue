@@ -1,7 +1,7 @@
 <template v-if="metaTable">
   <div class="overflow-x-auto pr-4 lg:pr-12">
     <div class="flex justify-between items-center">
-      <H1 class="" v-if="metaTable">{{ metaTable.meta_name }}</H1>
+      <H1 v-if="metaTable">{{ metaTable.meta_name }}</H1>
       <Modal
         class="mb-4"
         :tableEntries="tableEntries"
@@ -12,10 +12,10 @@
       v-if="metaTable && tableEntries"
       class="table table-compact table-zebra w-full z-0"
     >
-      <thead class="">
+      <thead>
         <tr>
-          <th class="bg-accent">{{ `d${tableEntries.length}` }}</th>
-          <th class="bg-accent">Result</th>
+          <th class="bg-primary">{{ `d${tableEntries.length}` }}</th>
+          <th class="bg-primary">Result</th>
         </tr>
       </thead>
       <tbody>

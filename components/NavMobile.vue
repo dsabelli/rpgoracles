@@ -8,12 +8,9 @@
     </div>
 
     <template v-for="mainTag in mainTags">
-      <li
-        class="p-2 pl-0 relative border-t-slate-500 border-t py-4"
-        tabindex="0"
-      >
+      <li class="relative border-t-slate-500 border-t mr-4 py-2" tabindex="0">
         <NuxtLink :to="`/tables/${mainTag.tag_path}`"
-          ><h3 class="text-slate-500 font-bold">
+          ><h3 class="font-bold">
             {{ mainTag.tag_name }}
           </h3></NuxtLink
         >

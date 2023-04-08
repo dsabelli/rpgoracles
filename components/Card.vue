@@ -12,7 +12,7 @@
       <p>{{ metaTable.meta_desc }}</p>
       <div class="card-actions">
         <NuxtLink :to="path"
-          ><button class="mt-2 btn btn-sm btn-primary">
+          ><button class="mt-2 btn btn-secondary text-white">
             Read More
           </button></NuxtLink
         >

@@ -1,7 +1,7 @@
 <template>
   <ul
     v-if="mainTags"
-    class="menu menu-horizontal bg-base-100 rounded-box p-2 w-full hidden lg:flex"
+    class="menu menu-horizontal bg-base-100 rounded-box p-2 w-full hidden lg:flex justify-center"
   >
     <template v-for="mainTag in mainTags">
       <li tabindex="0">

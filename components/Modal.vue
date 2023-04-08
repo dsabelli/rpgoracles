@@ -1,6 +1,11 @@
 <template>
   <div>
-    <label for="roll-modal" class="btn" @click="rollTable">Roll</label>
+    <label
+      for="roll-modal"
+      class="btn btn-secondary text-white"
+      @click="rollTable"
+      >Roll</label
+    >
 
     <input type="checkbox" id="roll-modal" class="modal-toggle" />
     <label for="roll-modal" class="modal cursor-pointer">

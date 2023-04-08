@@ -1,5 +1,5 @@
 <template>
-  <div class="drawer max-w-screen-xl mx-auto pl-4 lg:pl-12 py-4">
+  <div class="drawer max-w-screen-xl mx-auto bg-base-100 pl-4 lg:pl-12 py-4">
     <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
     <div class="drawer-content flex flex-col w-full">
       <!-- Navbar -->
@@ -21,7 +21,7 @@
           <h2 class="text-xl sm:text-2xl">RPG&nbsp;Oracles</h2></NuxtLink
         >
 
-        <div class="hidden lg:block w-full lg:col-span-6">
+        <div class="hidden lg:block w-full lg:col-span-5">
           <NavDesktop />
         </div>
       </div>
