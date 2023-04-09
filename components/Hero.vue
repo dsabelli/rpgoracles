@@ -11,11 +11,6 @@
         </p>
       </div>
       <Icosahedron />
-
-      <!-- <img
-        src="~/assets/static/stock.jpg"
-        class="max-w-sm w-72 rounded-lg shadow-2xl"
-      /> -->
     </div>
   </div>
 </template>
