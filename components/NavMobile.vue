@@ -3,7 +3,7 @@
     <div class="my-2">
       <NuxtLink class="flex items-center lg:gap-4" to="/"
         ><Logo styles="w-12 h-12" />
-        <h2 class="text-lg">RPG&nbsp;Oracles</h2></NuxtLink
+        <p class="text-lg">RPG&nbsp;Oracles</p></NuxtLink
       >
     </div>
 

@@ -18,7 +18,7 @@
         >
           <Logo styles="w-16 h-16 mt-2 sm:w-24 sm:h-24 lg:-ml-2" />
 
-          <h2 class="text-xl sm:text-2xl">RPG&nbsp;Oracles</h2></NuxtLink
+          <p class="text-xl sm:text-2xl">RPG&nbsp;Oracles</p></NuxtLink
         >
 
         <div class="hidden lg:block w-full lg:col-span-5">
