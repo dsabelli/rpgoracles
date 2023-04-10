@@ -4,7 +4,7 @@ module.exports = {
     themes: [
       {
         light: {
-          primary: "#B1C5E2",
+          primary: "#4a1f80",
 
           secondary: "#db081d",
 
@@ -23,7 +23,7 @@ module.exports = {
           error: "#F87272",
         },
         dark: {
-          primary: "#243D60",
+          primary: "#4a1f80",
 
           secondary: "#B10618",
 

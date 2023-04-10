@@ -14,8 +14,8 @@
     >
       <thead>
         <tr>
-          <th class="bg-primary">{{ `d${tableEntries.length}` }}</th>
-          <th class="bg-primary">Result</th>
+          <th class="bg-primary text-white">{{ `d${tableEntries.length}` }}</th>
+          <th class="bg-primary text-white">Result</th>
         </tr>
       </thead>
       <tbody>
