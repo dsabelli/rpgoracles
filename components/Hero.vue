@@ -10,7 +10,7 @@
           an extensive range of RPG oracles and tables across all genres.
         </p>
       </div>
-      <Icosahedron />
+      <ClientOnly> <Icosahedron /></ClientOnly>
     </div>
   </div>
 </template>
