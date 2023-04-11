@@ -41,6 +41,7 @@ model meta_tables {
   subtag_id                        Int?
   doc_id                           Int
   user_id                          Int?
+  meta_alt                         String?         @db.VarChar
   doc_types                        doc_types       @relation(fields: [doc_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   sub_tags                         sub_tags?       @relation(fields: [subtag_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   main_tags                        main_tags       @relation(fields: [tag_id], references: [id], onDelete: NoAction, onUpdate: NoAction)

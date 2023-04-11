@@ -3,7 +3,7 @@
     <figure class="">
       <img
         :src="metaTable.meta_image"
-        alt="Shoes"
+        :alt="metaTable.meta_alt || ''"
         class="rounded-t-xl w-full"
       />
     </figure>
