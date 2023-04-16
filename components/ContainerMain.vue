@@ -2,7 +2,7 @@
   <Suspense>
     <template #default>
       <div
-        class="drawer max-w-screen-xl mx-auto bg-base-100 pl-4 lg:pl-12 py-4"
+        class="drawer max-w-screen-xl mx-auto bg-base-100 pl-4 lg:pl-12 py-4 h-fit min-h-screen"
       >
         <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col w-full">
