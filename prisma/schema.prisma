@@ -32,33 +32,35 @@ model main_tags {
 }
 
 model meta_tables {
-  id                               Int             @id @default(autoincrement())
-  meta_date                        DateTime        @default(now()) @db.Timestamptz(6)
-  meta_name                        String          @db.VarChar
-  meta_desc                        String          @db.VarChar
-  meta_image                       String          @db.VarChar
+  id                               Int               @id @default(autoincrement())
+  meta_date                        DateTime          @default(now()) @db.Timestamptz(6)
+  meta_name                        String            @db.VarChar
+  meta_desc                        String            @db.VarChar
+  meta_image                       String            @db.VarChar
   tag_id                           Int
   subtag_id                        Int?
   doc_id                           Int
   user_id                          Int?
-  meta_alt                         String?         @db.VarChar
-  doc_types                        doc_types       @relation(fields: [doc_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  sub_tags                         sub_tags?       @relation(fields: [subtag_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  main_tags                        main_tags       @relation(fields: [tag_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  users_meta_tables_user_idTousers users?          @relation("meta_tables_user_idTousers", fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  meta_alt                         String?           @db.VarChar
+  doc_types                        doc_types         @relation(fields: [doc_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sub_tags                         sub_tags?         @relation(fields: [subtag_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  main_tags                        main_tags         @relation(fields: [tag_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users_meta_tables_user_idTousers users?            @relation("meta_tables_user_idTousers", fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sub_meta_tables                  sub_meta_tables[]
   table_entries                    table_entries[]
 }
 
 model sub_tags {
-  id          Int           @id @default(autoincrement())
-  tag_name    String        @db.VarChar
-  tag_path    String        @db.VarChar
-  tag_id      Int
-  user_id     Int?
-  doc_types   doc_types[]
-  meta_tables meta_tables[]
-  main_tags   main_tags     @relation(fields: [tag_id], references: [id], onUpdate: NoAction)
-  users       users?        @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  id              Int               @id @default(autoincrement())
+  tag_name        String            @db.VarChar
+  tag_path        String            @db.VarChar
+  tag_id          Int
+  user_id         Int?
+  doc_types       doc_types[]
+  meta_tables     meta_tables[]
+  sub_meta_tables sub_meta_tables[]
+  main_tags       main_tags         @relation(fields: [tag_id], references: [id], onUpdate: NoAction)
+  users           users?            @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model users {
@@ -82,4 +84,12 @@ model table_entries {
   user_id     Int?
   meta_tables meta_tables @relation(fields: [table_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   users       users?      @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model sub_meta_tables {
+  id           Int         @id @default(autoincrement())
+  metatable_id Int
+  subtag_id    Int
+  meta_tables  meta_tables @relation(fields: [metatable_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  sub_tags     sub_tags    @relation(fields: [subtag_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
