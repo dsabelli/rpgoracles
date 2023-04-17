@@ -1,6 +1,15 @@
 <template>
-  <div>{{ error }}</div>
-  <button @click="handleClearError">Go home</button>
+  <ContainerMain>
+    <div class="hero-content text-center h-screen">
+      <div class="max-w-md h-2/3">
+        <h1 class="text-8xl font-bold">{{ error.statusCode }}</h1>
+        <p class="py-6 text-xl">{{ error.statusMessage }}</p>
+        <button class="btn btn-primary text-white" @click="handleClearError">
+          Go home
+        </button>
+      </div>
+    </div>
+  </ContainerMain>
 </template>
 
 <script setup lang="ts">
