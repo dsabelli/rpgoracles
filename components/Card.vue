@@ -1,5 +1,5 @@
 <template>
-  <li class="list-none card w-64 bg-base-200 shadow-xl mb-4">
+  <li class="list-none card w-64 h-96 bg-base-200 shadow-xl mb-4">
     <figure class="">
       <img
         :src="metaTable.meta_image"
