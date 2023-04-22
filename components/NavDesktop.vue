@@ -39,11 +39,15 @@
             </li>
           </template>
         </ul>
-        <ul class="menu bg-base-100" v-if="documents">
+        <ul class="menu bg-base-100 z-20" v-if="documents">
           <template v-for="document in documents">
             <li
               tabindex="0"
-              :class="document.tag_id === mainTag.id ? '' : 'hidden'"
+              :class="
+                document.tag_id === mainTag.id && !document.subtag_id
+                  ? ''
+                  : 'hidden'
+              "
             >
               <NuxtLink
                 v-if="document.tag_id === mainTag.id"
